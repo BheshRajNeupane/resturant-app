@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@radix-ui/react-separator";
+import { Separator } from "@/components/ui/separator";
 import { Mail, LockKeyhole, Loader2, User, PhoneOutgoing } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ChangeEvent, FormEvent, useState } from "react";

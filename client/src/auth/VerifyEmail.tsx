@@ -31,7 +31,6 @@ const VerifyEmail = () => {
   };
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
   };
 
   return (
