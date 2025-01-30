@@ -68,6 +68,7 @@ const Signup = () => {
               name="fullname"
               value={input.fullname}
               onChange={changeEventHandler}
+              className="pl-10"
             />
             <User className="absolute inset-y-2 left-2 text-gray-500   pointer-events-none" />
             {errors && (
@@ -83,6 +84,7 @@ const Signup = () => {
               name="email"
               value={input.email}
               onChange={changeEventHandler}
+              className="pl-10"
             />
             <Mail className="absolute inset-y-2 left-2 text-gray-500   pointer-events-none" />
             {errors && (

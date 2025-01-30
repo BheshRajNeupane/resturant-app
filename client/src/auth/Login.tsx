@@ -61,6 +61,7 @@ const Login = () => {
               name="email"
               value={input.email}
               onChange={changeEventHandler}
+              className="pl-10"
             />
             <Mail className="absolute inset-y-2 left-2 text-gray-500   pointer-events-none" />
             {errors && (
@@ -77,6 +78,7 @@ const Login = () => {
               name="password"
               value={input.password}
               onChange={changeEventHandler}
+              className="pl-10"
             />
             <LockKeyhole className="absolute inset-y-2 left-2 text-gray-500   pointer-events-none" />
             {errors && (
@@ -99,6 +101,14 @@ const Login = () => {
               Login{" "}
             </Button>
           )}
+          <div className="mt-4">
+            <Link
+              to="/forget-password"
+              className="text-blue-500 hover:underline"
+            >
+              Forget Password
+            </Link>
+          </div>
         </div>
         <Separator />
         <p className="mt-2">

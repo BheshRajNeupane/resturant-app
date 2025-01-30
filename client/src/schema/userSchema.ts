@@ -15,3 +15,9 @@ export const userLoginSchema = z.object({
 });
 
 export type LoginInputState = z.infer<typeof userLoginSchema>;
+
+export const userForgetPasswordSchema = z.object({
+  email:z.string().email("Invalid email address")
+})
+
+export type ForgetPasswordInputState = z.infer<typeof userForgetPasswordSchema>;
