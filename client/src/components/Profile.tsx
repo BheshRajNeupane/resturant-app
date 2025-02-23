@@ -13,15 +13,14 @@ import { Label } from "./ui/label";
 import { Button } from "./ui/button";
 
 const Profile = () => {
-
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [profileData, setProfileData] = useState({
-    fullname:  "",
-    email:  "",
-    address:  "",
-    city:  "",
-    country:  "",
-    profilePicture:  "",
+    fullname: "",
+    email: "",
+    address: "",
+    city: "",
+    country: "",
+    profilePicture: "",
   });
   const imageRef = useRef<HTMLInputElement | null>(null);
   const [selectedProfilePicture, setSelectedProfilePicture] = useState<string>(
@@ -51,7 +50,7 @@ const Profile = () => {
 
   const updateProfileHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-   //api
+    //api
   };
 
   return (
@@ -90,7 +89,6 @@ const Profile = () => {
           <div className="w-full">
             <Label>Email</Label>
             <input
-              
               name="email"
               value={profileData.email}
               onChange={changeHandler}

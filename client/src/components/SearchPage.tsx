@@ -59,14 +59,16 @@ const SearchPage = () => {
         {/* Restaurant Cards */}
         <div className="grid md:grid-cols-3 gap-4">
           {["1", "2", "3"].map((items: string, idx: number) => (
-            <Card className="bg-white bg-dark-gray-800 shadow-xl rounded-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-              <div className="relative">
-                <AspectRatio ratio={16 / 16}>
-                  <img
-                    src={HeroImage}
-                    alt=""
-                    className="w-full h-full object-cover"
-                  />
+            <Card className=" max-w-sm bg-white bg-dark-gray-800 shadow-xl rounded-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300  ">
+              <div className="relative ">
+                <AspectRatio ratio={15 / 15}>
+                  <div className="flex justify-center items-center">
+                    <img
+                      src={HeroImage}
+                      alt=""
+                      className="max-w-[80%] max-h-[80%] object-cover rounded-lg"
+                    />
+                  </div>
                 </AspectRatio>
 
                 <div className="absolute top-2 left-2 bg-white dark:bg-gray-700 bg-opacity-75 rounded-lg px-3 py-1">
@@ -75,11 +77,11 @@ const SearchPage = () => {
                   </span>
                 </div>
               </div>
-              <CardContent className="p-4">
+              <CardContent className="p-2">
                 <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                   Pizza Hunt
                 </h1>
-                <div className="mt-2 gap-1 flex items-center text-gray-600 dark:text-gray-400">
+                <div className="mt-1 gap-1 flex items-center text-gray-600 dark:text-gray-400">
                   <MapPin size={16} />
                   <p className="text-sm">
                     City: <span className="font-medium">KTM</span>
@@ -102,7 +104,7 @@ const SearchPage = () => {
                   ))}
                 </div>
               </CardContent>
-              <CardFooter className="p-4 border-t dark:border-t-gray-700 border-t-gray-100 text-white flex justify-end">
+              <CardFooter className="p-2 border-t dark:border-t-gray-700 border-t-gray-100 text-white flex justify-end">
                 <Link to={`/restaurant/${123}`}>
                   <Button className="bg-orange hover:bg-hoverOrange font-semibold py-2 px-4 rounded-full shadow-md transition-colors duration-200">
                     View Menus

@@ -9,7 +9,8 @@ import ForgetPassword from "./auth/ForgetPassword";
 import ResetPassword from "./auth/ResetPassword";
 import VerifyEmail from "./auth/VerifyEmail";
 import Profile from "./components/Profile";
-import SearchPage from "./components/SearchPage"
+import SearchPage from "./components/SearchPage";
+import RestaurantDetail from "./components/ResturantDetails";
 
 const appRouter = createBrowserRouter([
   {
@@ -27,7 +28,11 @@ const appRouter = createBrowserRouter([
       {
         path: "/search/:text",
         element: <SearchPage />,
-      }
+      },
+      {
+        path: "/restaurant/:id",
+        element: <RestaurantDetail />,
+      },
     ],
   },
   {
