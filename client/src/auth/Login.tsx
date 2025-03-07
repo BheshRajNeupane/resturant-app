@@ -19,7 +19,7 @@ const Login = () => {
   });
 
   
-  const [errors, setErrors] = useState<Partial<SignupInputState>>({});
+  const [errors, setErrors] = useState<Partial<LoginInputState>>({});
 
   console.log('====================================');
   console.log(errors);

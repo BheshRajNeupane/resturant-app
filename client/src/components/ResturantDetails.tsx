@@ -1,9 +1,11 @@
 import { Badge } from "./ui/badge";
 import HeroPizza from "@/assets/hero_pizza.png";
+import AvailableMenu from "./AvailableMenu";
 const RestaurantDetail = () => {
   return (
     <div className="max-w-6xl mx-auto my-10">
-      <div className=" flex flex-col items-center ">
+     <div className="w-full">
+     <div className=" flex flex-col items-center ">
         <div className="w-full h-32 md:h-6  lg:h-72">
           <img
             src={HeroPizza}
@@ -28,6 +30,8 @@ const RestaurantDetail = () => {
           </h2>
         </div>
       </div>
+      <AvailableMenu/>
+     </div>
     </div>
   );
 };

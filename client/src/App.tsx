@@ -11,6 +11,7 @@ import VerifyEmail from "./auth/VerifyEmail";
 import Profile from "./components/Profile";
 import SearchPage from "./components/SearchPage";
 import RestaurantDetail from "./components/ResturantDetails";
+import Cart from "./components/Cart";
 
 const appRouter = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ const appRouter = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
-      },
+      },{
+        path: "/cart",
+        element: <Cart/>,
+      }
+      ,
       {
         path: "/search/:text",
         element: <SearchPage />,

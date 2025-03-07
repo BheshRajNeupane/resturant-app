@@ -31,6 +31,7 @@ import { Link } from "react-router-dom";
 import {
   Loader2,
   Moon,
+  HandPlatter,
   ShoppingCart,
   Sun,
   Menu,
@@ -38,6 +39,7 @@ import {
   PackageCheck,
   SquareMenu,
   UtensilsCrossed,
+  
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Input } from "./ui/input";
@@ -175,6 +177,7 @@ const MobileNavbar = () => {
             className="flex items-center gap-4 hover:bg-gray-200 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium"
           >
             {/* <HandPlatter /> */}
+            <HandPlatter/>
             <span>Order</span>
           </Link>
           <Link
