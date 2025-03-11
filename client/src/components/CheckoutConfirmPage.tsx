@@ -40,10 +40,11 @@ e.preventDefault();
   return (
     <Dialog open={open} onOpenChange={() => setOpen(false)}>
       <DialogContent>
-        <DialogTitle>Are you absolutely sure?</DialogTitle>
+        <DialogTitle>fill form to order</DialogTitle>
         <DialogDescription className="text-sm">
-          This action cannot be undone. This will permanently delete your
-          account and remove your data from our servers.
+     Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+     Magni assumenda reiciendis ipsa harum ex laudantium accusantium 
+     iusto earum maxime modi molestias mollitia, nisi, perspiciatis minima inventore in esse libero dolor?
         </DialogDescription>
         <form  onSubmit={checkoutHandler} className=" flex flex-col ">
           <div>

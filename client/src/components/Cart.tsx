@@ -33,7 +33,7 @@ const Cart = () => {
         </TableHeader>
 
         <TableBody>
-          <TableRow>
+          <TableRow className="text-left">
             <TableCell>
               <Avatar>
                 <AvatarImage src="" alt="" />
@@ -43,7 +43,7 @@ const Cart = () => {
             <TableCell> Biryani</TableCell>
             <TableCell>80</TableCell>
             <TableCell>
-              <div className=" flex jusify-content-center align-items-center">
+              <div className=" flex jusify-content-center align-items-center ">
                 <Button
                   size={"icon"}
                   variant={"outline"}
