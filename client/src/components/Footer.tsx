@@ -2,8 +2,8 @@ import { Facebook, Instagram, Twitter } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-8 px-6 ">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between text-center md:text-left">
+    
+      <footer className="w-full flex flex-col md:flex-row items-center justify-between text-center md:text-left bg-orange hover:bg-hoverOrange  text-white p-4 ">
         {/* Branding */}
         <div>
           <h2 className="text-lg font-semibold">TestingEats</h2>
@@ -41,8 +41,8 @@ const Footer = () => {
             <Facebook />
           </a>
         </div>
-      </div>
-    </footer>
+      </footer>
+
   );
 };
 

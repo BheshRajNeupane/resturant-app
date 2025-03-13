@@ -14,6 +14,8 @@ import RestaurantDetail from "./components/ResturantDetails";
 import Cart from "./components/Cart";
 import Resturant from "./admin/Resturant";
 import AddMenu from "./admin/AddMenu";
+import Orders from "./admin/Orders";
+import Success from "./components/Success";
 
 const appRouter = createBrowserRouter([
   {
@@ -40,6 +42,10 @@ const appRouter = createBrowserRouter([
         path: "/restaurant/:id",
         element: <RestaurantDetail />,
       },
+      {
+        path:"/order/status",
+        element: < Success/>,
+      },
       //admin service start
       {
         path: "/admin/restaurant",
@@ -49,6 +55,13 @@ const appRouter = createBrowserRouter([
         path: "/admin/menu",
         element: <AddMenu/>,
       }
+      
+      ,
+      {
+        path: "/admin/orders",
+        element: <Orders/>,
+      }
+
     ],
   },
   {

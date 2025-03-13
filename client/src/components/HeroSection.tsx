@@ -2,9 +2,8 @@ import { useState } from "react";
 import { Input } from "./ui/input";
 import { Search } from "lucide-react";
 import { Button } from "./ui/button";
-import HereImage from "@/assets/hero_pizza.png";
+import Herepizza from "../assets/hero_pizza.png";
 import { useNavigate } from "react-router-dom";
-
 const HereSection = () => {
   const [searchText, setSearchText] = useState<string>("");
   const navigate = useNavigate();
@@ -39,7 +38,7 @@ const HereSection = () => {
       </div>
       <div>
         <img
-          src={HereImage}
+          src={Herepizza}
           alt=""
           className="object-cover w-full max-h-[500px]"
         />

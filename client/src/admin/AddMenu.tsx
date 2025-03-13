@@ -13,8 +13,16 @@ import { Label } from "@/components/ui/label";
 import { MenuFormSchema,menuSchema } from "@/schema/menuSchema";
 import { Loader2, Plus } from "lucide-react";
 import React, { FormEvent, useState } from "react";
-
+import  HeroPizza  from "@/assets/hero_pizza.png";
+import EditMenu from "./EditMenu";
  
+
+const menu = {
+  name: "Biryani",
+  description: "A delicious plate of biryani",
+  price: 80,
+  image: HeroPizza,
+}
 
 const AddMenu = () => {
   const [input, setInput] = useState<MenuFormSchema>({
@@ -24,9 +32,9 @@ const AddMenu = () => {
     image: undefined,
   });
   const loading = false;
-  const [open, setOpen] = useState<boolean>(false);
-//   const [editOpen, setEditOpen] = useState<boolean>(false);
-//   const [selectedMenu, setSelectedMenu] = useState<any>();
+  const [open, setOpen] = useState<boolean>(false); // for add menu dialog
+  const [editOpen, setEditOpen] = useState<boolean>(false); // for edit menu dialog
+  const [selectedMenu, setSelectedMenu] = useState<any>();
   const [error, setError] = useState<Partial<MenuFormSchema>>({});
  
 
@@ -43,11 +51,14 @@ const AddMenu = () => {
       setError(fieldErrors as Partial<MenuFormSchema>);
       return;
     }
+    setOpen(false);
+    console.log(result);
     // api implementation start from here
    
   };
   return (
     <div className="max-w-6xl mx-auto my-10">
+      {/* Add  menu Dialog */}
       <div className="flex justify-between">
         <h1 className="font-bold md:font-extrabold text-lg md:text-2xl">
           Available Menus
@@ -147,6 +158,41 @@ const AddMenu = () => {
         </Dialog>
       </div>
   
+  {/* Available MENU */}
+      <div  className="mt-6 space-y-4">
+          <div className="flex flex-col md:flex-row md:items-center md:space-x-4 md:p-4 p-2 shadow-md rounded-lg border">
+            <img
+              src={menu.image}
+              alt=""
+              className="md:h-24 md:w-24 h-16 w-full object-cover rounded-lg"
+            />
+            <div className="flex-1">
+              <h1 className="text-lg font-semibold text-gray-800">
+                {menu.name}
+              </h1>
+              <p className="text-sm tex-gray-600 mt-1">{menu.description}</p>
+              <h2 className="text-md font-semibold mt-2">
+                Price: <span className="text-[#D19254]">80</span>
+              </h2>
+            </div>
+            <Button
+              onClick={() => {
+                setSelectedMenu(menu);
+                setEditOpen(true);
+              }}
+              size={"sm"}
+              className="bg-orange hover:bg-hoverOrange mt-2"
+            >
+              Edit
+            </Button>
+          </div>
+        </div>
+        <EditMenu 
+        selectedMenu={selectedMenu} 
+        editOpen={editOpen} 
+        setEditOpen={setEditOpen}
+        />
+
     </div>
   );
 };
