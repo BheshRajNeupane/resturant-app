@@ -2,9 +2,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Mail, LockKeyhole, Loader2, User, PhoneOutgoing } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { userSignupSchema, SignupInputState } from "../schema/userSchema";
+import { useUserStore } from "@/store/useUserStore";
+import AxiosInstance from "@/api/axios";
 
 // type SignupInputState = {
 //   fullname: string;
@@ -14,7 +16,7 @@ import { userSignupSchema, SignupInputState } from "../schema/userSchema";
 // };
 
 const Signup = () => {
-  const loading = false;
+  // const loading = false;
 
   const [input, setInput] = useState<SignupInputState>({
     fullname: "",
@@ -24,6 +26,8 @@ const Signup = () => {
   });
 
   const [errors, setErrors] = useState<Partial<SignupInputState>>({});
+const { signup , loading } = useUserStore()
+const navigate = useNavigate()
 
   const changeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -34,28 +38,34 @@ const Signup = () => {
     setInput({ ...input, [name]: value });
   };
 
-  const loginSubmitHandler = (e: FormEvent) => {
+  const loginSubmitHandler =  async (e: FormEvent) => {
     e.preventDefault();
 
     //form validation check start
     const result = userSignupSchema.safeParse(input);
-    console.log('====================================');
-    console.log(result);
-    console.log('====================================');
+
     if( !result.success){
       const fieldErrors = result.error.formErrors.fieldErrors;
       setErrors(fieldErrors as Partial<SignupInputState>);
      return;
     }
         setErrors({}); 
-        console.log(input);
-    
 
+  try{
+
+     await signup(input)
+ navigate("/login")
+
+  }catch(error){
+    console.log(error);
+  }
 
   };
 
   return (
-    <div>
+    <div className="flex items-center justify-center min-h-screen w-full">
+
+    <div className="w-full md:w-[70%] h-auto  ml-6 mt-10 p-4 border border-gray-300 rounded-lg shadow-md">
       <form action="" onSubmit={loginSubmitHandler}>
         <div className="mb-4">
           <h1 className="font-bold text-2xl">Testing</h1>
@@ -100,6 +110,7 @@ const Signup = () => {
               name="password"
               value={input.password}
               onChange={changeEventHandler}
+              className="pl-10"
             />
             <LockKeyhole className="absolute inset-y-2 left-2 text-gray-500   pointer-events-none" />
             {errors && (
@@ -116,6 +127,7 @@ const Signup = () => {
               name="contact"
               value={input.contact}
               onChange={changeEventHandler}
+              className="pl-10"
             />
             <PhoneOutgoing className="absolute inset-y-2 left-2 text-gray-500   pointer-events-none" />
             {errors && (
@@ -135,7 +147,7 @@ const Signup = () => {
               className=" w-full bg-orange hover:bg-hoverOrange"
             >
               {" "}
-              Login{" "}
+              Signup{" "}
             </Button>
           )}
         </div>
@@ -147,6 +159,7 @@ const Signup = () => {
           </Link>
         </p>
       </form>
+    </div>
     </div>
   );
 };
