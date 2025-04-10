@@ -3,6 +3,8 @@ import { User } from "../models/user.model"
 import HttpException from "../utils/HttpException.utils";
 import BcryptService from "./bcrypt.service";
 import TokenService from "./tokens.service";
+import EmailService from "./email.service";
+import { access } from "fs";
 
 interface ISignup{
   fullname:string,
@@ -19,7 +21,8 @@ interface ILogin{
 class UserServices{
    constructor(
     private readonly bcryptService = new BcryptService(),
-    private readonly tokenService =  new TokenService()
+    private readonly tokenService =  new TokenService(),
+    private readonly emailService = new EmailService(),
    ){}
 
       async Signup({fullname , email , password , contact}:ISignup){
@@ -33,8 +36,8 @@ class UserServices{
             
 
             const hashedPassword = await this.bcryptService.hash(password);
-            // const verificationToken = this.tokenService.generateVerificationToken();
-            const verificationToken= '123456'
+            const verificationToken = this.tokenService.generateVerificationCode();
+            
   
 
              user= await User.create({
@@ -49,11 +52,12 @@ class UserServices{
 
                
             //jwt token
-            // const jwtToken = ;
+            const jwtToken =  this.tokenService.sign(user);
 
             //send email verification
-
-  return user;
+        await this.emailService.sendVerificationEmail(user.email , verificationToken);
+        console.log("user", user);
+  return { user , access_token: jwtToken  };
 
       }catch(err :any){
         throw err;
@@ -74,21 +78,16 @@ class UserServices{
               throw HttpException.badRequest("Incorrect email or password")
             }
          
-            // const verificationToken = this.tokenService.generateVerificationToken();
-            const verificationToken= 'asdfghjkl'
-  
+       
+             const jwtToken =  this.tokenService.sign(user);
 
-
-            //jwt token ; set cookie
-            // this.tokenService.sign()
-            // user
+           
             user.lastLogin = new Date()
            
+            await user.save();
+         
 
-            //send email verification
-            console.log(user , "User");
-
-  return user;
+        return { user , access_token: jwtToken };
 
       }catch(err :any){
         throw err;
@@ -96,11 +95,13 @@ class UserServices{
 
     }
 
-    async VerifyEmail({verificationToken}:any){
+    async VerifyEmail({verificationCode}:any){
        try {
-        const verificationCode = verificationToken;
-
-        const user = await User.findOne({ verificationToken: verificationCode, verificationTokenExpiresAt: { $gt: Date.now() } })
+       
+        const user = await User.findOne({ verificationToken: verificationCode, verificationTokenExpiresAt: { $gte: Date.now() } })
+       
+        
+ console.log("userVV", user);
 
         if(!user){
           throw HttpException.notFound("Mail is not verified")
@@ -109,9 +110,10 @@ class UserServices{
       user.verificationToken = undefined;
       user.verificationTokenExpiresAt = undefined
       await user.save();
-      
+        this.emailService.sendWelcomeEmai(user.email , user.fullname);
+      // // send email
               // // send welcome email
-              // await sendWelcomeEmail(user.email, user.fullname);
+        
         return user;
        } catch (error) {
         throw error;

@@ -54,6 +54,7 @@ type UserState = {
             } catch (error: any) {
                 toast.error(error.response.data.message);
                 set({ loading: false });
+                throw error;
             }
         },
         login: async (input: LoginInputState) => {
@@ -72,12 +73,13 @@ type UserState = {
             } catch (error: any) {
                 toast.error(error.response.data.message);
                 set({ loading: false });
-                 return ;
+                 throw error;
             }
         },
         verifyEmail: async (verificationCode: string) => {
             try {
                 set({ loading: true });
+                
                 const response = await AxiosInstance.post('/verify-email', { verificationCode } , {
                     headers: {
                         'Content-Type': 'application/json'

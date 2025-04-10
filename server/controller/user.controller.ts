@@ -25,7 +25,7 @@ class UserController {
     });
 }
   async VerifyEmail(req: Request, res: Response) {
-
+    console.log("VV", req.body);
     const response = await UserServices.VerifyEmail(req.body)
     
     res.status(StatusCodes.CREATED).json({

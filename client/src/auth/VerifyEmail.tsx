@@ -35,8 +35,9 @@ const VerifyEmail = () => {
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const verificationCode = otp.join("");
-    console.log(verificationCode);
+
     try {
+      console.log(verificationCode);
       await verifyEmail(verificationCode);
       navigate("/");
     } catch (error) {console.log(error);

@@ -6,14 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { userSignupSchema, SignupInputState } from "../schema/userSchema";
 import { useUserStore } from "@/store/useUserStore";
-import AxiosInstance from "@/api/axios";
-
-// type SignupInputState = {
-//   fullname: string;
-//   email: string;
-//   password: string;
-//   contact: number;
-// };
 
 const Signup = () => {
   // const loading = false;
@@ -54,7 +46,7 @@ const navigate = useNavigate()
   try{
 
      await signup(input)
- navigate("/login")
+     navigate("/verify-email");
 
   }catch(error){
     console.log(error);
