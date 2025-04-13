@@ -1,15 +1,27 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useUserStore } from "@/store/useUserStore";
 import { Loader2, Mail } from "lucide-react";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState<string>("");
-  const loading = false;
+  const { forgotPassword , loading} = useUserStore();
+  
+const handleSubmit = async (e: FormEvent) => {
+
+    e.preventDefault();
+    try {
+      await forgotPassword(email);
+      
+    } catch (error) {
+      console.error("Error sending reset link:", error);
+    }
+  }
 
   return (
-    <div className="flex items-center justify-center min-h-screen     ">
+    <div className="flex items-center justify-center min-h-screen     "  onSubmit={handleSubmit}>
       <form className=" flex flex-col gap-5  rounded-lg md:p-8 w-full md:w-[70%] h-auto">
         <div className="text-center">
           <h1 className="font-extrabold text-2xl mb-2">Forgot Password</h1>

@@ -34,10 +34,10 @@ export const auditLoggerSuccess = (req: Request, res: Response, next: NextFuncti
       const action = getActionFromMethod(req.method);
 
       logUserAction(route, {
-        user: req?.user?.id || 'n/a',
+        user: req?.userId || 'n/a',
         action,
         status: STATE.SUCCESS,
-        role: (req.user?.role as ROLE) || undefined,
+        role: (req?.role as ROLE) || undefined,
         body: rest,
         params: req.params,
         query: req.query,
@@ -57,10 +57,10 @@ export const auditLoggerError = (err: any, req: Request, res: Response, next: Ne
   const action = getActionFromMethod(req.method);
 
   logUserAction(route, {
-    user: req?.user?.id || 'n/a',
+    user: req?.userId || 'n/a',
     action,
     status: STATE.FAILED,
-    role: (req.user?.role as ROLE) || undefined,
+    role: (req?.role as ROLE) || undefined,
     body: rest,
     params: req.params,
     query: req.query,

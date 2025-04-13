@@ -120,6 +120,7 @@ const navigate = useNavigate()
               value={input.contact}
               onChange={changeEventHandler}
               className="pl-10"
+              placeholder ="9867493895"
             />
             <PhoneOutgoing className="absolute inset-y-2 left-2 text-gray-500   pointer-events-none" />
             {errors && (

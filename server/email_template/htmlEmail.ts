@@ -133,6 +133,7 @@ export const generateWelcomeEmailHtml = (name: string) => {
 };
 
 export const generatePasswordResetEmailHtml = (resetURL: string) => {
+
     return `
       <html>
         <head>

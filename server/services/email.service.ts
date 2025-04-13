@@ -45,6 +45,7 @@ async sendWelcomeEmai(email: string, name: string){
 async sendPasswordResetEmail(email: string, resetURL: string){
     const recipient = [{ email }];
     const htmlContent = generatePasswordResetEmailHtml(resetURL);
+  
     try {
         const res = await client.send({
             from: sender,
