@@ -9,6 +9,21 @@ import { useUserStore } from "@/store/useUserStore";
 import { useNavigate } from "react-router-dom";
 
 
+
+const redirectToGoogleSSO = ()=>{
+
+   
+  const googleLoginURL = "http://localhost:8000/login/google";
+  const newWindow = window.open(
+    googleLoginURL,
+    "_self",
+    "width=500,height=600"
+  );
+
+ 
+}
+
+
 const Login = () => {
   // const loading = false;
   const [input, setInput] = useState<LoginInputState>({
@@ -120,6 +135,18 @@ const Login = () => {
           </Link>
         </p>
       </form>
+      <div className="mb-10 mt-3">
+            
+                  <Button
+                  onClick={redirectToGoogleSSO}
+                 
+                    className=" w-full bg-blue-600 hover:bg-blue-400"
+                  >
+                    {" "}
+                    Login with Google{" "}
+                  </Button>
+                
+              </div>
     </div>
 
     </div>

@@ -12,7 +12,7 @@ export const Message = {
   updated: 'Successfully updated',
   deleted: 'Successfully deleted',
   created: 'Successfully created',
-  error: 'Error occurred',
+  error: 'Internal server error',
   unAuthorized: 'You are not authorized for this task',
   fetched: 'Successfully fetched data',
   alreadyExist: 'already exists',

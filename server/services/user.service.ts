@@ -74,10 +74,14 @@ class UserServices {
       if (!existing_user) {
         throw HttpException.notFound("User doesnot exists");
       }
+      if (existing_user.provider === "google") {
+        throw HttpException.badRequest("Please login using Google");
+      }
+      
 
       if (
         existing_user &&
-        !(await this.bcryptService.compare(inputpassword, existing_user.password))
+        !(await this.bcryptService.compare(inputpassword, existing_user.password  ))
       ) {
         throw HttpException.badRequest("Incorrect email or password");
       }

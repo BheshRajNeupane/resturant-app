@@ -7,6 +7,19 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { userSignupSchema, SignupInputState } from "../schema/userSchema";
 import { useUserStore } from "@/store/useUserStore";
 
+const redirectToGoogleSSO = ()=>{
+
+   
+  const googleLoginURL = "http://localhost:8000/login/google";
+  const newWindow = window.open(
+    googleLoginURL,
+    "_self",
+    "width=500,height=600"
+  );
+
+ 
+}
+
 const Signup = () => {
   // const loading = false;
 
@@ -18,7 +31,7 @@ const Signup = () => {
   });
 
   const [errors, setErrors] = useState<Partial<SignupInputState>>({});
-const { signup , loading } = useUserStore()
+const { signup , loading  , googleAuth} = useUserStore()
 const navigate = useNavigate()
 
   const changeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +66,9 @@ const navigate = useNavigate()
   }
 
   };
+
+
+
 
   return (
     <div className="flex items-center justify-center min-h-screen w-full">
@@ -115,12 +131,11 @@ const navigate = useNavigate()
           <div className="relative">
             <Input
               type="text"
-              placeholder="Enter your contact"
+              placeholder="9867403322"
               name="contact"
               value={input.contact}
               onChange={changeEventHandler}
               className="pl-10"
-              placeholder ="9867493895"
             />
             <PhoneOutgoing className="absolute inset-y-2 left-2 text-gray-500   pointer-events-none" />
             {errors && (
@@ -144,14 +159,31 @@ const navigate = useNavigate()
             </Button>
           )}
         </div>
-        <Separator />
-        <p className="mt-2">
+        
+        
+        <p className="mt-1 mb-4">
           Already have account?
           <Link to="/login" className="text-blue-500">
             Login
           </Link>
         </p>
+       
       </form>
+     
+      <div className="mb-10">
+      
+            <Button
+            onClick={redirectToGoogleSSO}
+           
+              className=" w-full bg-blue-600 hover:bg-blue-400"
+            >
+              {" "}
+              Signup with Google{" "}
+            </Button>
+          
+        </div>
+
+        
     </div>
     </div>
   );

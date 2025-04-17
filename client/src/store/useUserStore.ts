@@ -19,11 +19,13 @@ type User = {
 };
 
 type UserState = {
-  user: User | null;
+  user: User | Partial<User> |null;
   token: string | null;
   isAuthenticated: boolean;
   isCheckingAuth: boolean;
   loading: boolean;
+  oauth2VerifyEmail:boolean;
+  googleAuth:(token:string )=>void;
   signup: (input: SignupInputState) => Promise<void>;
   login: (input: LoginInputState) => Promise<void>;
   verifyEmail: (verificationCode: string) => Promise<void>;
@@ -42,6 +44,22 @@ export const useUserStore = create<UserState>()(
       isAuthenticated: false,
       isCheckingAuth: true,
       loading: false,
+      oauth2VerifyEmail:false,
+      googleAuth:( token : string ) => {
+  // try{
+      
+
+        set({ isCheckingAuth: true  , token: token , oauth2VerifyEmail:true , isAuthenticated:true });
+      // }catch(err:any){
+      //   toast.error(err.message)
+      // }
+      
+     
+        
+      },
+      
+      
+      
 
       signup: async (input) => {
         try {
@@ -192,7 +210,8 @@ export const useUserStore = create<UserState>()(
     {
       name: 'auth-storage',
       storage: createJSONStorage(() => localStorage),
-      partialize: (state) => ({ token: state.token ? encryptDecrypt.encrypt(state.token ) : null}), // Only persist encrypted token
+      // partialize: (state) => ({ token: state.token ? encryptDecrypt.encrypt(state.token ) : null } ), // Only persist encrypted token
+           
     }
   )
 );

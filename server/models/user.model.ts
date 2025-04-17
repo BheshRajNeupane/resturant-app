@@ -13,6 +13,8 @@ import mongoose , {Document , Model} from "mongoose";
     admin:boolean;
     lastLogin?: Date;
     isVerified?: boolean;
+    googleId:String,
+    provider:String
     resetPasswordToken?:string;
     resetPasswordTokenExpiresAt?:Date;
     verificationToken?:string;
@@ -37,24 +39,27 @@ const userSchema = new mongoose.Schema<IUserDocument>({
     },
     password: {
         type: String,
-        required: true,
-        select: false
-    },
+        select: false,
+        required: function (this: IUserDocument) {
+          return !this.googleId; // password required only if not a Google user
+        }
+      },
+      
     contact: {
         type: Number,
-        required: true
+        // required: true
     },
     address: {
         type: String,
-        default: "Update your address"
+        default:"",
     },
     city:{
         type:String,
-        default:"Update your city"
+        default:"",
     },
     country:{
         type:String,
-        default:"Update your country"
+        default:"",
     },
     profilePicture:{
         type:String,
@@ -70,6 +75,18 @@ const userSchema = new mongoose.Schema<IUserDocument>({
         type:Boolean,
         default:false
     },
+    googleId: {
+        type:String,
+        default:null
+        
+    },
+  
+provider: {
+    type: String,
+    enum: ["local", "google"],
+    default: "local",
+  },
+ 
     resetPasswordToken:String,
     resetPasswordTokenExpiresAt:Date,
     verificationToken:String,

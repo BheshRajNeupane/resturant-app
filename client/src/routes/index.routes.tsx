@@ -19,6 +19,7 @@ import Login from "@/auth/Login";
 import { AuthenticatedUser } from "@/routes/AuthenticatedUser.routes";
 import { AdminRoute } from "@/routes/AdminRoute.routes";
 import { ProtectedRoutes } from "./ProtectedRoute.routes";
+import OauthSuccess from "@/components/0authSucess";
 
 export const appRouter = createBrowserRouter([
   {
@@ -93,5 +94,10 @@ export const appRouter = createBrowserRouter([
   {
     path: "/verify-email",
     element: <VerifyEmail/>,
+  },
+  
+  {
+    path: "/Oauth-sucess",
+    element: <OauthSuccess/>,
   },
 ]);

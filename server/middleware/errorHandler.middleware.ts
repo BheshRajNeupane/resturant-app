@@ -9,6 +9,7 @@ export const errorHandler = (
     next: NextFunction
   )=>  {
   
+    console.log("ee",error)
     let statusCode = 500;
     let data = {
       success: false,
