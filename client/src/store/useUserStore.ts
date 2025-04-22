@@ -48,7 +48,7 @@ export const useUserStore = create<UserState>()(
       googleAuth:( token : string ) => {
   // try{
       
-
+ console.log("tttkon" , token)
         set({ isCheckingAuth: true  , token: token , oauth2VerifyEmail:true , isAuthenticated:true });
       // }catch(err:any){
       //   toast.error(err.message)

@@ -8,6 +8,7 @@ import { DotenvConfig } from "./config/env.config";
 import { auditLoggerError, auditLoggerSuccess } from "./logger/audit.logger";
 import router from "./routes/user.routes";
 import Auth0Routes from "./routes/Auth0.routes";
+import resturantRoutes from "./routes/resturant.routes";
 import { errorHandler } from "./middleware/errorHandler.middleware";
 import passport from "passport";
 require("./OAuth/passportGoogleSSO");
@@ -61,6 +62,7 @@ console.log(req.user)
 
 app.use(router)
 app.use(Auth0Routes);
+app.use(resturantRoutes)
 
 // app.use((req, res, next) => {
 //     res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
