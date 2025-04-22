@@ -23,6 +23,7 @@ const successLoginUrl = "http://localhost:5173/";
     }),
     async (req, res) => {
       const user = req.user;
+      console.log(user)
       const token : string = new TokenService().sign(user as IUserDocument) ;
   
       

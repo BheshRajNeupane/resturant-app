@@ -6,9 +6,12 @@ import { Navigate } from "react-router-dom";
     if(!isAuthenticated){
       return <Navigate to="/login" replace/>
     }
-    if(!user?.admin){
+   
+    // if(!user?.admin){
+    if(user?.admin) { //test
       return <Navigate to="/" replace/>
     }
   
     return children;
   }
+  //admin not allow to signup with google

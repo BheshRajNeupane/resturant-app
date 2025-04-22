@@ -1,7 +1,9 @@
+// import mongoose from "mongoose";
+
 declare namespace Express {
   export interface Request {
-    userId?: string;
-    role?: string;
+    userId?:string ;
+    admin?: boolean;
    
   }
 }

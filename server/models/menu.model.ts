@@ -1,4 +1,4 @@
-import mongoose, { Document } from "mongoose";
+import mongoose, { Document, Model } from "mongoose";
 
 export interface IMenu {
     // _id:mongoose.Schema.Types.ObjectId;
@@ -31,4 +31,8 @@ const menuSchema = new mongoose.Schema<IMenuDocument>({
   },
 },{timestamps:true});
 
-export const Menu = mongoose.model<IMenuDocument>("Menu", menuSchema);
+
+
+
+export const Menu: Model<IMenuDocument> =
+  mongoose.models.Menu || mongoose.model<IMenuDocument>("Menu", menuSchema);

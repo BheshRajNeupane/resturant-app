@@ -50,9 +50,9 @@ const userActionsSchema = new Schema({
       required: false,
     },
     role: {
-      type: String,
-      enum: ROLE,
-      default: ROLE.ADMIN,
+      type: Boolean,
+      // enum: ROLE,
+      // default: ROLE.ADMIN,
     },
     errorMessage: {
       type: String,

@@ -6,7 +6,7 @@ type AuditLog = {
   user?: String;
   action: ACTION;
   status: STATE;
-  role?: ROLE;
+  role?: Boolean;
   body?: any;
   params?: any;
   query?: any;

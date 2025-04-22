@@ -8,7 +8,7 @@ import {  IUserDocument } from '../models/user.model';
 
 class TokenService{
     sign(user: IUserDocument ) {
-        const payload:any = {userid:user._id  }
+        const payload:any = {userid:user._id  , admin: user.admin}
         const token = jwt.sign(payload, DotenvConfig.JWT_SECRET as string, {
             expiresIn: DotenvConfig.JWT_TOKEN_EXPIRE,
           });
