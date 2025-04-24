@@ -24,44 +24,52 @@ class ResturantController{
    }
    async Get(req:Request , res:Response){
       const response = await ResturantService.getResturant(req.userId as string)
-      res.status(StatusCodes.CREATED).json({
+      res.status(StatusCodes.SUCCESS).json({
         success: true,
         message: ' all resurant',
         data: response,
       });
    }
-  //  async GetRestaurantOrder(req:Request , res:Response){
-  //     const response = await ResturantService.getRestaurantOrder(req.userId)
-  //     res.status(StatusCodes.CREATED).json({
-  //       success: true,
-  //       message: ' Success.',
-  //       data: response,
-  //     });
-  //  }
-  //  async UpdareOrderStatus(req:Request , res:Response){
-  //     const response = await ResturantService.updateOrderStatus(req.params ,  req.body)
-  //     res.status(StatusCodes.CREATED).json({
-  //       success: true,
-  //       message: 'Order Status Update Successfully.',
-  //       data: response,
-  //     });
-  //  }
-  //  async SearchRestaurant(req:Request , res:Response){
-  //     const response = await ResturantService.searchRestaurant(req.params ,  req.query)
-  //     res.status(StatusCodes.CREATED).json({
-  //       success: true,
-  //       message: 'Search Successfully.',
-  //       data: response,
-  //     });
-  //  }
-  //  async getSingleRestaurant(req:Request , res:Response){
-  //     const response = await ResturantService.getSingleRestaurant(req.params)
-  //     res.status(StatusCodes.CREATED).json({
-  //       success: true,
-  //       message: 'Resturant.',
-  //       data: response,
-  //     });
-  //  }
+   async GetRestaurantOrder(req:Request , res:Response){
+      const response = await ResturantService.getRestaurantOrder(req.userId as string)
+      res.status(StatusCodes.SUCCESS).json({
+        success: true,
+        message: ' Order list.',
+        data: response,
+      });
+   }
+   async UpdareOrderStatus(req:Request , res:Response){
+    const orderId =  req.params.orderId as string
+      const response = await ResturantService.updateOrderStatus(orderId,  req.body)
+      res.status(StatusCodes.CREATED).json({
+        success: true,
+        message: 'Order Status Update Successfully.',
+        data: response,
+      });
+   }
+   async SearchRestaurant(req:Request , res:Response){
+    const searchText = req.params.searchText as string || "";
+    const searchQuery = req.query.searchQuery as string || "";
+ 
+    const selectedCuisines = (req.query.selectedCuisines as string || "").split(",").filter(cuisine => cuisine);
+      const response = await ResturantService.searchRestaurant(searchText,  searchQuery , selectedCuisines)
+      res.status(StatusCodes.SUCCESS).json({
+        success: true,
+        message: 'Search Successfully.',
+        data: response,
+      });
+   }
+   async getSingleRestaurant(req:Request , res:Response){
+    
+    const resturantId = req.params.id
+      const response = await ResturantService.getSingleRestaurant(resturantId)
+      res.status(StatusCodes.CREATED).json({
+        success: true,
+        message: 'Resturant.',
+        data: response,
+      });
+   }
+  
 
 
 

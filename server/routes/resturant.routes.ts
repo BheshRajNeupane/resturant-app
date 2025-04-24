@@ -28,7 +28,7 @@ router.patch('/restaurant/update' ,
     catchAsync( resturantController.Update)
 )
 router.get('/restaurant/' ,
-    isAuthenticated,
+    // isAuthenticated,
     // isAuthorize
     // RequestValidator
     resturantController.Get
@@ -39,17 +39,31 @@ router.get('/restaurant/' ,
 //     // RequestValidator
 //     resturantController.UpdareOrderStatus
 // )
-// router.get('/search/:searchText' ,
-//     isAuthenticated,
-//     // isAuthorize,
-//     // RequestValidator
-//     resturantController.SearchRestaurant
-// )
-// router.get('/resturant/' ,
-//     isAuthenticated,
-//     // isAuthorize
-//     // RequestValidator
-//     resturantController.getSingleRestaurant
-// )
+router.get('/search/:searchText' ,
+    // isAuthenticated,
+    // isAuthorize,
+    // RequestValidator
+    resturantController.SearchRestaurant
+)
+router.get('/restaurant/:id' ,
+    // isAuthenticated,
+    // isAuthorize
+    // RequestValidator
+    resturantController.getSingleRestaurant
+)
+router.get('/restaurant/admin/orders' ,
+    isAuthenticated,
+    // isAuthorize
+    // RequestValidator
+    resturantController.GetRestaurantOrder
+)
+
+router.put('/order/:orderId/status' ,
+    isAuthenticated,
+    // isAuthorize
+    // RequestValidator
+    resturantController.UpdareOrderStatus
+)
+
 
 export default router

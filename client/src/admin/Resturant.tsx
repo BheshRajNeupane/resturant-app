@@ -54,7 +54,7 @@ const Restaurant = () => {
         formData.append("imageFile", input.imageFile);
       }
 
-      if (restaurant) {
+      if (restaurant ) {
         // update
 
         await updateRestaurant(formData);

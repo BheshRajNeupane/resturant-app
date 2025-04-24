@@ -37,7 +37,8 @@ export const isAuthenticated = async (
 
     next();
   } catch (error: any) {
-    if (error.name === 'TokenExpiredError') {
+   
+    if (error.name === 'JsonWebTokenError') {
       next(
         HttpException.unauthorized(
           'Your token has expired. Please login again.'

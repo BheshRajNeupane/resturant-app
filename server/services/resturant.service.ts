@@ -96,17 +96,26 @@ class ResturantService{
     }
      async getRestaurantOrder( user: string){
    try{     
+
+
       const resturant = await Restaurant.findOne({user})
          if(!resturant){
             throw HttpException.notFound("resturant not found")
          }
+  console.log("resturantid" ,resturant?._id , "userid" ,user )
 
-         const orders = await Order.find({restaurant:resturant?._id}).populate('resturant').populate('user')
+
+  
+  
+const orders = await Order.find({restaurant:resturant?._id})//.populate('resturant').populate('user')
+
         //  if(!orders){
         //     throw HttpException.notFound("Order not found")
 
 
         //  }
+     
+  
 
          return orders
 
@@ -115,7 +124,7 @@ class ResturantService{
 
      }
     }
-    async updateOrderStatus( {orderId}: { orderId:string},   { status:updateOrderStatus }: {  status:OrderStatus }  ){
+    async updateOrderStatus( orderId:string,   { status:updateOrderStatus }: {  status:OrderStatus }  ){
      try{
         const order = await Order.findById(orderId);
         if(!order){
@@ -131,24 +140,51 @@ class ResturantService{
      }
 
     }
-    async searchRestaurant( {text}: {text:string}  ,){
+    async searchRestaurant( searchText :string , searchQuery:string , selectedCuisines :string[]){
+   const query :any = {}
+     if(searchText){
+        query.$or = [
+            { restaurantName: { $regex: searchText, $options: 'i' } },
+            { city: { $regex: searchText, $options: 'i' } },
+            { country: { $regex: searchText, $options: 'i' } },
+        ]
+     }
 
+     if (searchQuery) {
+        query.$or = [
+            { restaurantName: { $regex: searchQuery, $options: 'i' } },
+            { cuisines: { $regex: searchQuery, $options: 'i' } }
+        ]
     }
-    async getSingleRestaurant({id :restaurantId}: { id:string}){
+    if(selectedCuisines.length > 0){
+        query.cuisines = {$in:selectedCuisines}
+    }
+    // console.log("QUERY>>" , query)
+    try {
+    const restaurants = await Restaurant.find(query);
+    return restaurants
+} catch (error) {
+    throw error
+}
+    }
+ async getSingleRestaurant(id:string ){
         try{ 
-        const restaurant = await Restaurant.findById(restaurantId).populate({
-            path:'menus',
-            options:{createdAt:-1}
-        });
+        const restaurant = await Restaurant.findById(id)
+        // .populate({
+        //     path:'menus',
+        //     options:{createdAt:-1}
+        // });
         if(!restaurant){
          throw HttpException.notFound("resturant not found")
         };
+        console.log(restaurant)
         return restaurant
        
     }catch(err){
         throw err
     }
 }
+
 
 }
 export default new ResturantService() 

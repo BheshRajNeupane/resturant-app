@@ -4,6 +4,8 @@ import { toast } from 'sonner';
 import AxiosInstance from '@/api/axios';
 import encryptDecrypt from '@/utils/encryptDecrypt';
 import { RestaurantState, MenuItem } from '@/types/resturant.types';
+import { Orders } from '@/types/order.types';
+
 
 export const useResturantStore = create<RestaurantState>()(
   persist(
@@ -64,7 +66,6 @@ export const useResturantStore = create<RestaurantState>()(
         try {
             set({ loading: true });
             const response = await AxiosInstance.get('/restaurant');
-            console.log("restREsGER" , response)
             if (response.data.success) {
         
                 set({ loading: false, restaurant: response.data.data });
@@ -79,15 +80,30 @@ export const useResturantStore = create<RestaurantState>()(
 
 
       searchRestaurant: async (searchText: string, searchQuery: string, selectedCuisines: any) => {
-        // Add your API logic here
+        try{
+          set({ loading:true})
+          const params = new URLSearchParams();
+          params.set("searchQuery", searchQuery);
+          params.set("selectedCuisines", selectedCuisines.join(","));
+          const response = await AxiosInstance.get(`/search/${searchText}?${params.toString()}`)
+          if(response.data.success){
+            set({ loading:false})
+            set({ loading: false, searchedRestaurant: response.data });
+          }
+
+        }catch(err){
+          set({ loading: false });
+        }
       },
 
       addMenuToRestaurant: (menu: MenuItem) => {
-        // const current = get().restaurant;
-        // if (current) {
-        //   const updated = { ...current, menu: [...current.menu, menu] };
-        //   set({ restaurant: updated });
-        // }
+     try {
+      set({loading:true})
+     
+      
+     } catch (error) {
+      
+     }
       },
 
       updateMenuToRestaurant: (menu: MenuItem) => {
@@ -100,27 +116,61 @@ export const useResturantStore = create<RestaurantState>()(
         //   set({ restaurant: updated });
         // }
       },
-
+    //FILTER
       setAppliedFilter: (value: string) => {
-        // set((state) => ({
-        //   appliedFilter: [...state.appliedFilter, value],
-        // }));
+       set((state)=>{
+        const isAlreadyApplied = state.appliedFilter.includes(value);
+                                                                                             
+        const updatedFilter = isAlreadyApplied ? state.appliedFilter.filter((item) => item !== value) : [...state.appliedFilter, value];
+        return { appliedFilter: updatedFilter }
+
+
+       })
       },
 
       resetAppliedFilter: () => {
-        // set({ appliedFilter: [] });
+        set({ appliedFilter: [] })
       },
 
-      getSingleRestaurant: async (restaurantId: string) => {
-        // Add your API logic here
-      },
+    getSingleRestaurant: async (restaurantId: string) => {
+        try {
+            const response = await AxiosInstance.get(`/restaurant/${restaurantId}`);
+            if (response.data.success) {
+              console.log(response.data)
+                set({ singleRestaurant: response.data.data })
+            }
+        } catch (error) { }
+    },
 
       getRestaurantOrders: async () => {
-        // Add your API logic here
+        try {
+        
+          const response = await AxiosInstance.get(`/restaurant/admin/orders`);
+          console.log("getRestaurantOrders" , response.data.data)
+          if (response.data.success) {
+              set({ restaurantOrder: response.data.data });
+          }
+      } catch (error) {
+          console.log(error);
+      }
       },
 
       updateRestaurantOrder: async (orderId: string, status: string) => {
-        // Add your API logic here
+        try {
+          const response = await AxiosInstance.put(`order/${orderId}/status`  , { status }
+
+          );
+          if (response.data.success) {
+              const updatedOrder = get().restaurantOrder.map((order: Orders) => {
+                  return order._id === orderId ? { ...order, status: response.data.data.status } : order;
+              })
+              set({ restaurantOrder: updatedOrder });
+              console.log("resturandtOrder" ,response )
+              toast.success(response.data.message);
+          }
+      } catch (error: any) {
+          toast.error(error.response.data.message);
+      }
       },
     }),
     {

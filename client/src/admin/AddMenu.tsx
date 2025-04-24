@@ -15,7 +15,8 @@ import { Loader2, Plus } from "lucide-react";
 import React, { FormEvent, useState } from "react";
 import  HeroPizza  from "@/assets/hero_pizza.png";
 import EditMenu from "./EditMenu";
- 
+import { useResturantStore } from "@/store/useResturantStore"
+import { useMenuStore } from "@/store/useMenuStore"
 
 const menu = {
   name: "Biryani",
@@ -31,7 +32,9 @@ const AddMenu = () => {
     price: 0,
     image: undefined,
   });
-  const loading = false;
+  const { createMenu} = useMenuStore()
+
+   const {loading , addMenuToRestaurant} = useResturantStore()
   const [open, setOpen] = useState<boolean>(false); // for add menu dialog
   const [editOpen, setEditOpen] = useState<boolean>(false); // for edit menu dialog
   const [selectedMenu, setSelectedMenu] = useState<any>();
@@ -52,8 +55,19 @@ const AddMenu = () => {
       return;
     }
     setOpen(false);
-    console.log(result);
-    // api implementation start from here
+    try {
+      const formData = new FormData();
+      formData.append("name", input.name);
+      formData.append("description", input.description);
+      formData.append("price", input.price.toString());
+      if(input.image){
+        formData.append("image", input.image);
+      }
+      await createMenu(formData);
+    } catch (error) {
+      console.log(error);
+    }
+     
    
   };
   return (
