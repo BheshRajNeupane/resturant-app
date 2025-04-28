@@ -26,8 +26,9 @@ import {
 
 import { Separator } from "./ui/separator";
 // import { MenubarItem, MenubarMenu } from "@radix-ui/react-menubar";
+import { useThemeStore} from "@/store/useThemeStore"
 
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import {
   Loader2,
   Moon,
@@ -43,10 +44,37 @@ import {
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Input } from "./ui/input";
+import { useCartStore } from "@/store/useCartStore";
+import { useUserStore } from "@/store/useUserStore";
+import { useState } from "react";
+
 
 const Navbar = () => {
-  const loading = false;
-  const admin = true;
+  const navigate = useNavigate();
+  const { cart } = useCartStore();
+  const { setTheme } = useThemeStore();
+  const { user, loading, logout } = useUserStore();
+  const location = useLocation();
+  const [lastLocation, setLastLocation] = useState(null);
+
+console.log("location", location);  
+  
+  const handleCartClick = () => {
+    if (location.pathname === "/cart") {
+
+      if (lastLocation) {
+        navigate(lastLocation);
+      } else {
+        navigate(-1); 
+      }
+    } else {
+      
+      setLastLocation(location.pathname );
+      navigate("/cart");
+    }
+  };
+
+
   return (
     <div className="max-w-7xl mx-auto">
       <div className="flex items-center justify-between h-14">
@@ -59,7 +87,7 @@ const Navbar = () => {
             <Link to="/profile">Profile </Link>
             <Link to="/order/status">Order </Link>
           </div>
-          {admin && (
+          {user?.admin && (
             <Menubar>
               <MenubarMenu>
                 <MenubarTrigger>Dashboard</MenubarTrigger>
@@ -90,20 +118,34 @@ const Navbar = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem>Light</DropdownMenuItem>
-                <DropdownMenuItem>Dark</DropdownMenuItem>
+              <DropdownMenuItem onClick={()=> setTheme('light')}>Light</DropdownMenuItem>
+              <DropdownMenuItem onClick={()=> setTheme('dark')}>Dark</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
-          <Link to="/cart" className="relative cursor-pointer">
+          {/* <Link to="/cart" className="relative cursor-pointer">
             <ShoppingCart />
-            <Button
-              size={"icon"}
-              className="absolute -inset-y-4 left-2 text-xs  rounded-full h-4 w-4 bg-red-500"
-            >
-              4
-            </Button>
-          </Link>
+            {cart.length > 0 && (
+                <Button
+                  size={"icon"}
+                  className="absolute -inset-y-3 left-2 text-xs rounded-full w-4 h-4 bg-red-500 hover:bg-red-500"
+                >
+                  {cart.length}
+                </Button>
+              )}
+          </Link> */}
+          <div onClick={handleCartClick} className="relative cursor-pointer">
+      <ShoppingCart />
+      {cart.length > 0 && (
+        <Button
+          size={"icon"}
+          className="absolute -inset-y-3 left-2 text-xs rounded-full w-4 h-4 bg-red-500 hover:bg-red-500"
+        >
+          {cart.length}
+        </Button>
+      )}
+    </div>
+
           <div>
             <Avatar>
               <AvatarImage />
@@ -117,7 +159,7 @@ const Navbar = () => {
                 Please wait
               </Button>
             ) : (
-              <Button className="bg-orange hover:bg-hoverOrange">Logout</Button>
+              <Button className="bg-orange hover:bg-hoverOrange" onClick={logout}>Logout</Button>
             )}
           </div>
           {/* {Mobile responsive } */}

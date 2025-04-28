@@ -21,7 +21,7 @@ export default function OauthSuccess() {
       );
 setTimeout(()=>{
     navigate("/")
-} , 2000)
+} , 1000)
      ; // Redirect to homepage
     } else {
       // If failed or no token
