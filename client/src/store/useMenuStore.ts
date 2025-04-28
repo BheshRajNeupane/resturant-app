@@ -20,40 +20,44 @@ export const useMenuStore = create<MenuState>()(
       createMenu: async (formData: FormData) => {
         try {
           set({ loading: true });
-          const response = await AxiosInstance.post(`/menu/create`, formData);
+          
+          const response = await AxiosInstance.post('/menu/create', formData);
 
           if (response.data.success) {
             toast.success(response.data.message);
-            set({ loading: false, menu: response.data.menu });
+            console.log("res" , response.data)
+            set({ loading: false, menu: response.data.data });
 
-            // update restaurant
-            useResturantStore.getState().addMenuToRestaurant(response.data.menu);
+            // update restaurant --> menu update --> show in available menu
+            useResturantStore.getState().addMenuToRestaurant(response.data.data);
           }
         } catch (error: any) {
-          toast.error(error?.response?.data?.message || "Something went wrong");
+            console.log(error)
+          toast.error(error.response.message || "Something went wrong");
           set({ loading: false });
         }
       },
       editMenu: async (menuId: string, formData: FormData) => {
-        // try {
-        //   set({ loading: true });
-        //   const response = await AxiosInstance.put(`${API_END_POINT}/${menuId}`, formData, {
-        //     headers: {
-        //       "Content-Type": "multipart/form-data",
-        //     },
-        //   });
+        try {
+            
+          set({ loading: true });
+          const response = await AxiosInstance.put(`menu/${menuId}`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
 
-        //   if (response.data.success) {
-        //     toast.success(response.data.message);
-        //     set({ loading: false, menu: response.data.menu });
+          if (response.data.success) {
+            toast.success(response.data.message);
+            set({ loading: false, menu: response.data.data });
 
-        //     // update restaurant
-        //     useRestaurantStore.getState().updateMenuToRestaurant(response.data.menu);
-        //   }
-        // } catch (error: any) {
-        //   toast.error(error?.response?.data?.message || "Something went wrong");
-        //   set({ loading: false });
-        // }
+            // update restaurant
+            useResturantStore.getState().updateMenuToRestaurant(response.data.data);
+          }
+        } catch (error: any) {
+          toast.error(error.response.message || "Something went wrong");
+          set({ loading: false });
+        }
       },
     }),
     {

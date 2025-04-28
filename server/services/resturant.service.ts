@@ -80,11 +80,12 @@ class ResturantService{
     }
     async getResturant( userId:string){
         try {
+         
            
-            const restaurant = await Restaurant.findOne({ user: userId }) //.populate('menus');
+            const restaurant = await Restaurant.findOne({ user: userId }).populate('menus');
 
             if (!restaurant) {
-                return { restaurant : []}
+                throw HttpException.notFound("resutrant not f")
             };
             return   restaurant  
         } catch (error) {
@@ -107,7 +108,7 @@ class ResturantService{
 
   
   
-const orders = await Order.find({restaurant:resturant?._id})//.populate('resturant').populate('user')
+const orders = await Order.find({restaurant:resturant?._id}).populate('resturant').populate('user')
 
         //  if(!orders){
         //     throw HttpException.notFound("Order not found")
@@ -169,11 +170,10 @@ const orders = await Order.find({restaurant:resturant?._id})//.populate('restura
     }
  async getSingleRestaurant(id:string ){
         try{ 
-        const restaurant = await Restaurant.findById(id)
-        // .populate({
-        //     path:'menus',
-        //     options:{createdAt:-1}
-        // });
+        const restaurant = await Restaurant.findById(id).populate({
+            path:'menus',
+            options:{createdAt:-1}
+        });
         if(!restaurant){
          throw HttpException.notFound("resturant not found")
         };

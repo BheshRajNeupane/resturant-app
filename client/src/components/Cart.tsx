@@ -12,13 +12,21 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Minus, Plus } from "lucide-react";
 import CheckoutConfirmPage from "./CheckoutConfirmPage";
+import { useCartStore } from "@/store/useCartStore";
+import { CartItem } from "@/types/cart.types";
 
 const Cart = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const { cart, decrementQuantity, incrementQuantity  ,removeFromTheCart , clearCart} = useCartStore();
+  
+  let totalAmount = cart.reduce((acc, ele) => {
+    return acc + ele.price * ele.quantity;
+  }, 0);
+
   return (
     <div className="flex flex-col max-w-7xl mx-auto my-10">
       <div className="flex justify-end">
-        <Button variant="link"> Clear All</Button>
+        <Button variant="link" onClick= {clearCart }> Clear All</Button>
       </div>
       <Table>
         <TableHeader>
@@ -33,55 +41,58 @@ const Cart = () => {
         </TableHeader>
 
         <TableBody>
-          <TableRow className="text-left">
-            <TableCell>
-              <Avatar>
-                <AvatarImage src="" alt="" />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-            </TableCell>
-            <TableCell> Biryani</TableCell>
-            <TableCell>80</TableCell>
-            <TableCell>
-              <div className=" flex jusify-content-center align-items-center ">
-                <Button
-                  size={"icon"}
-                  variant={"outline"}
-                  className="rounded-full bg-gray-200"
-                >
-                  {" "}
-                  <Minus />{" "}
+        {cart.map((item: CartItem) => (
+            <TableRow>
+              <TableCell>
+                <Avatar>
+                  <AvatarImage src={item.image} alt="" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+              </TableCell>
+              <TableCell> {item.name}</TableCell>
+              <TableCell> {item.price}</TableCell>
+              <TableCell>
+                <div className="w-fit flex items-center rounded-full border border-gray-100 dark:border-gray-800 shadow-md">
+                  <Button
+                  onClick={() => decrementQuantity(item._id)}
+                    size={"icon"}
+                    variant={"outline"}
+                    className="rounded-full bg-gray-200"
+                  >
+                    <Minus />
+                  </Button>
+                  <Button
+                    size={"icon"}
+                    className="font-bold border-none"
+                    disabled
+                    variant={"outline"}
+                  >
+                    {item.quantity}
+                  </Button>
+                  <Button
+                  onClick={() => incrementQuantity(item._id)}
+                    size={"icon"}
+                    className="rounded-full bg-orange hover:bg-hoverOrange"
+                    variant={"outline"}
+                  >
+                    <Plus />
+                  </Button>
+                </div>
+              </TableCell>
+              <TableCell>{item.price * item.quantity}</TableCell>
+              <TableCell className="text-right">
+                <Button size={"sm"} className="bg-orange hover:bg-hoverOrange" onClick={()=>removeFromTheCart(item._id)}>
+                  Remove
                 </Button>
-                <Button
-                  size={"icon"}
-                  variant={"outline"}
-                  className="rounded-full bg-gray-200"
-                >
-                  1
-                </Button>
-                <Button
-                  size={"icon"}
-                  variant={"outline"}
-                  className="rounded-full bg-gray-200"
-                >
-                  <Plus />
-                </Button>
-              </div>
-            </TableCell>
-            <TableCell>80</TableCell>
-            <TableCell className="text-right">
-              <Button variant={"outline"} className="rounded-full bg-gray-200">
-                {" "}
-                Remove
-              </Button>
-            </TableCell>
-          </TableRow>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
 
         <TableFooter>
           <TableRow>
             <TableCell colSpan={5}>Total</TableCell>
-            <TableCell className="text-right">80</TableCell>
+            <TableCell className="text-right">{totalAmount}</TableCell>
           </TableRow>
         </TableFooter>
       </Table>

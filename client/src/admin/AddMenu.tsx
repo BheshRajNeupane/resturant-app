@@ -34,13 +34,13 @@ const AddMenu = () => {
   });
   const { createMenu} = useMenuStore()
 
-   const {loading , addMenuToRestaurant} = useResturantStore()
+   const {loading ,  restaurant, addMenuToRestaurant} = useResturantStore()
   const [open, setOpen] = useState<boolean>(false); // for add menu dialog
   const [editOpen, setEditOpen] = useState<boolean>(false); // for edit menu dialog
   const [selectedMenu, setSelectedMenu] = useState<any>();
   const [error, setError] = useState<Partial<MenuFormSchema>>({});
  
-
+console.log("resturant in Add menu" , restaurant)
   const changeEventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
     setInput({ ...input, [name]: type === "number" ? Number(value) : value });
@@ -64,6 +64,7 @@ const AddMenu = () => {
         formData.append("image", input.image);
       }
       await createMenu(formData);
+      
     } catch (error) {
       console.log(error);
     }
@@ -173,7 +174,9 @@ const AddMenu = () => {
       </div>
   
   {/* Available MENU */}
-      <div  className="mt-6 space-y-4">
+ 
+  {restaurant?.menus.map((menu: any, idx: number) => (
+        <div key={idx} className="mt-6 space-y-4">
           <div className="flex flex-col md:flex-row md:items-center md:space-x-4 md:p-4 p-2 shadow-md rounded-lg border">
             <img
               src={menu.image}
@@ -186,7 +189,7 @@ const AddMenu = () => {
               </h1>
               <p className="text-sm tex-gray-600 mt-1">{menu.description}</p>
               <h2 className="text-md font-semibold mt-2">
-                Price: <span className="text-[#D19254]">80</span>
+                Price: <span className="text-[#D19254]">{menu.price}</span>
               </h2>
             </div>
             <Button
@@ -201,6 +204,7 @@ const AddMenu = () => {
             </Button>
           </div>
         </div>
+      ))}
         <EditMenu 
         selectedMenu={selectedMenu} 
         editOpen={editOpen} 

@@ -21,27 +21,28 @@ passport.use(
          async( req , accessToken, refreshToken, profile, cb) => {
        
             try {
+              console.log("email", profile.emails?.[0].value )
 
-                // Check if user already exists (Google Login)
+            
                 const existingUser = await User.findOne({ email: profile.emails?.[0].value });
  
-                console.log(existingUser)
                 if (existingUser) {
-                  // if (existingUser.provider === "local") {
+                  if (existingUser.provider === "local") {
                     
-                  //   return cb(
-                  //      new Error("Please login with email and password. You've already signed up using form."),
-                  //     false
-                  //   );
-                  // }
+                    return cb(
+                       new Error("Please login with email and password. You've already signed up using form."),
+                      false
+                    );
+                  }
             
                   // Google login success
-                  cb(null, existingUser);
+                   return cb(null, existingUser);
                 }
 
+             
                
         
-             //If not, create new user
+        
                 const user = await User.create({
                   fullname: profile.displayName,
                   email: profile.emails?.[0].value,

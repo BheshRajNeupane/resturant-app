@@ -28,7 +28,7 @@ router.patch('/restaurant/update' ,
     catchAsync( resturantController.Update)
 )
 router.get('/restaurant/' ,
-    // isAuthenticated,
+    isAuthenticated,
     // isAuthorize
     // RequestValidator
     resturantController.Get

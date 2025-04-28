@@ -18,6 +18,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { useMenuStore} from "@/store/useMenuStore"
 
 
 const EditMenu = ({
@@ -30,7 +31,7 @@ const EditMenu = ({
     setEditOpen: Dispatch<SetStateAction<boolean>>;
   }) => {
 
-
+const {  editMenu} =useMenuStore()
     const [input, setInput] = useState<MenuFormSchema>({
         name: "",
         description: "",
@@ -56,13 +57,31 @@ const EditMenu = ({
           return;
         }
 
-        console.log( "edit" , result);
+        try {
+          const formData = new FormData();
+          formData.append("name", input.name);
+          formData.append("description", input.description);
+          formData.append("price", input.price.toString());
+          if(input.image){
+            formData.append("image", input.image);
+          }
+
+          console.log("selected menu" , selectedMenu , selectedMenu._id)
+          await editMenu(selectedMenu._id, formData);
+        } catch (error) {
+          console.log(error);
+        }
         
     }
 
     useEffect(() => {
         if (selectedMenu) {
-          setInput(selectedMenu);
+          setInput({
+            name: selectedMenu?.name || "",
+            description: selectedMenu?.description || "",
+            price: selectedMenu?.price || 0,
+            image: undefined,
+          });
         }
       }, [selectedMenu]
     );

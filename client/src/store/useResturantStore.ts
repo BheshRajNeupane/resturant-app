@@ -29,7 +29,7 @@ export const useResturantStore = create<RestaurantState>()(
           });
          
           if (response.data.success) {
-            // console.log("reD" ,response.data )
+            console.log("reD" ,response )
             set({ loading: false, restaurant: response.data.data });
             toast.success(response.data.message);
           }
@@ -66,15 +66,17 @@ export const useResturantStore = create<RestaurantState>()(
         try {
             set({ loading: true });
             const response = await AxiosInstance.get('/restaurant');
+            console.log("getResturant" ,response )
             if (response.data.success) {
         
                 set({ loading: false, restaurant: response.data.data });
             }
         } catch (error: any) {
+          set({ loading: false });
             if (error.response.status === 404) {
                 set({ restaurant: null });
             }
-            set({ loading: false });
+          
         }
     },
 
@@ -97,25 +99,30 @@ export const useResturantStore = create<RestaurantState>()(
       },
 
       addMenuToRestaurant: (menu: MenuItem) => {
-     try {
-      set({loading:true})
-     
-      
-     } catch (error) {
-      
-     }
+        console.log("addmenue store/restro" , get().restaurant)
+        set((state: any) => ({
+          restaurant: state.restaurant ? { ...state.restaurant, menus: [...state.restaurant.menus, menu] } : null,
+   
+      }))
+
       },
 
-      updateMenuToRestaurant: (menu: MenuItem) => {
-        // const current = get().restaurant;
-        // if (current) {
-        //   const updated = {
-        //     ...current,
-        //     menu: current.menu.map((m) => (m.id === menu.id ? menu : m)),
-        //   };
-        //   set({ restaurant: updated });
-        // }
-      },
+      updateMenuToRestaurant: (updatedMenu: MenuItem) => {
+        set((state: any) => {
+            
+            if (state.restaurant) {
+                const updatedMenuList = state.restaurant.menus.map((menu: any) => menu._id === updatedMenu._id ? updatedMenu : menu);
+                return {
+                    restaurant: {
+                        ...state.restaurant,
+                        menus: updatedMenuList
+                    }
+                }
+            }
+            // if state.restaruant is undefined then return state
+            return state;
+        })
+    },
     //FILTER
       setAppliedFilter: (value: string) => {
        set((state)=>{
