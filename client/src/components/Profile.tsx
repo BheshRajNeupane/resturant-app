@@ -7,13 +7,14 @@ import {
   Plus,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
-
+import { useUserStore } from "../store/useUserStore";
 const Profile = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { updateProfile } = useUserStore();
   const [profileData, setProfileData] = useState({
     fullname: "",
     email: "",
@@ -36,7 +37,7 @@ const Profile = () => {
         setSelectedProfilePicture(result);
         setProfileData((prevData) => ({
           ...prevData,
-          profilePicture: result,
+          profilePicture: file as unknown as string ,
         }));
       };
       reader.readAsDataURL(file);
@@ -50,8 +51,42 @@ const Profile = () => {
 
   const updateProfileHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //api
+    try {
+
+      const formData = new FormData();
+      formData.append("fullname", profileData.fullname);
+      formData.append("email", profileData.email as string);
+      formData.append("address", profileData.address);
+      formData.append("city", profileData.city);
+      formData.append("country", profileData.country);
+      if (profileData.profilePicture) {
+        formData.append("profilePicture", profileData.profilePicture);
+      }
+
+      setIsLoading(true);
+      await updateProfile(profileData);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+    }
   };
+  useEffect(()=>{
+    const user = useUserStore.getState().user;
+    console.log("user", user);
+    if (user) {
+      setProfileData({
+        fullname: user.fullname || "",
+        email: user.email || "",
+        address: user.address || "",
+        city: user.city || "",
+        country: user.country || "",
+        profilePicture: user.profilePicture || "",
+      });
+      setSelectedProfilePicture(user.profilePicture || "");
+    }
+  
+   },[useUserStore.getState().user])
+
 
   return (
     <form onSubmit={updateProfileHandler} className="max-w-7xl mx-auto my-5">
@@ -140,7 +175,7 @@ const Profile = () => {
             Please wait
           </Button>
         ) : (
-          <Button type="submit" className="bg-orange hover:bg-hoverOrange">
+          <Button type="submit" className="bg-orange hover:bg-hoverOrange" >
             Update
           </Button>
         )}

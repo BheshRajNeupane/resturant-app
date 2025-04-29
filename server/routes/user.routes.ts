@@ -4,6 +4,7 @@ import RequestValidator from '../middleware/Request.Validator';
 import { SignupDTO , LoginDTO  ,VerifyEmailDto ,UpdateProfileDto } from '../dto/auth.dto';
 import { catchAsync } from '../utils/catchAsync.utils';
 import { isAuthenticated } from '../middleware/isAuthenticated';
+import upload from '../middleware/multer';
 const router = Router();
 
 const userController = new UserController()
@@ -40,8 +41,9 @@ router.post(
   );
   router.put(
     '/profile/update',
-    RequestValidator.validate(UpdateProfileDto),
+    // RequestValidator.validate(UpdateProfileDto),
     isAuthenticated,
+    upload.single("profilePicture"),
     catchAsync(userController.UpdateProfile))
 router.post(
     '/logout',

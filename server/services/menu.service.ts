@@ -4,6 +4,7 @@ import HttpException from "../utils/HttpException.utils"
 import { Message } from "../constant/messages"
 import { Order } from "../models/order.model"
 import { Menu } from "../models/menu.model"
+import uploadImageOnCloudinary from "../cloudinary/imageUpload"
  
 export type MenuItem = {
 
@@ -23,12 +24,12 @@ class MenuService{
         if(!file){
             throw HttpException.badRequest("Menu image is required.")
         }
-        // const imageUrl = await uploadImageOnCloudinary(file as Express.Multer.File);
+        const image = await uploadImageOnCloudinary(file as Express.Multer.File);
         const menu :any = await Menu.create({
             name , 
             description,
             price,
-            image:"test"
+            image
         });
         const restaurant = await Restaurant.findOne({ user});
         if(restaurant){
@@ -55,8 +56,8 @@ class MenuService{
            if(price) menu.price = price;
    
            if(file){
-            //    const imageUrl = await uploadImageOnCloudinary(file as Express.Multer.File);
-            //    menu.image = imageUrl;
+               const imageUrl = await uploadImageOnCloudinary(file as Express.Multer.File);
+               menu.image = imageUrl;
            }
          
             return menu

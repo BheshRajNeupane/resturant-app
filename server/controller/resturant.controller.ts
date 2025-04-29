@@ -15,6 +15,8 @@ class ResturantController{
        
    }
    async Update(req:Request , res:Response){
+    console.log("req.body" , req.body)
+      console.log("req.file" , req.file)
       const response = await ResturantService.updateResturant(req.body , req.file , req.userId as string )
       res.status(StatusCodes.CREATED).json({
         success: true,

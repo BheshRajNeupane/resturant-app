@@ -21,7 +21,11 @@ export const useMenuStore = create<MenuState>()(
         try {
           set({ loading: true });
           
-          const response = await AxiosInstance.post('/menu/create', formData);
+          const response = await AxiosInstance.post('/menu/create', formData , {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            }
+        });
 
           if (response.data.success) {
             toast.success(response.data.message);

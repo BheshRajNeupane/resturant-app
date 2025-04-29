@@ -8,6 +8,7 @@ import { access } from "fs";
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import { DotenvConfig } from "../config/env.config";
+import uploadImageOnCloudinary from "../cloudinary/imageUpload";
 
 
 interface ISignup {
@@ -186,20 +187,35 @@ async CheckAuth(userId: string) {
 
 }
 
-async UpdateProfile( userId: string, updatedData: Partial<IUser>) {
+async UpdateProfile( userId: string, updatedData: Partial<IUser> , file: Express.Multer.File | undefined ) {
   try {
     
     const user = await User.findById(userId);
     if (!user) {
         throw HttpException.notFound("User not found");
     };
-    const { profilePicture , ...rest} = updatedData;
-    //profile piceture update on cloudinary
 
-    const updatedUser = await User.findByIdAndUpdate(userId, rest, { new: true });
+    //profile piceture update on cloudinary
+    if(file){
+    const image = await uploadImageOnCloudinary(file);
+    console.log( "image" ,image);
+    user.profilePicture = image || user.profilePicture;
+  
+    }
+    console.log( "up" ,updatedData);
+
+  
+ user.fullname = updatedData.fullname || user.fullname;
+ user.email = updatedData.email || user.email;
+ user.contact = updatedData.contact || user.contact;
+  user.address = updatedData.address || user.address;
+  user.city = updatedData.city || user.city;
+  user.country = updatedData.country || user.country;
+  console.log( "user" ,user);
+  await user.save();
   
 
-    return updatedUser;
+    return user;
    
 } catch (error) {
     throw error;

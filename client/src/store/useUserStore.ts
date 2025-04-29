@@ -196,7 +196,10 @@ export const useUserStore = create<UserState>()(
 
       updateProfile: async (input) => {
         try {
-          const res = await AxiosInstance.put('/profile/update', input);
+          const res = await AxiosInstance.put('/profile/update', input , {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            }});
           if (res.data.success) {
             toast.success(res.data.message);
             set({ user: res.data.data });

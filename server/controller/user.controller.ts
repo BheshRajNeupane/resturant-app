@@ -79,7 +79,9 @@ class UserController {
 
 async UpdateProfile(req: Request, res: Response) {
     const userId  = req.userId as string;
-    const response = await UserServices.UpdateProfile(userId, req.body)
+    console.log("rq.body", req.body);
+    console.log("rq.file", req.file);
+    const response = await UserServices.UpdateProfile(userId, req.body , req.file)
     res.status(StatusCodes.CREATED).json({
       success: true,
       message: 'Profile updated successfully.',

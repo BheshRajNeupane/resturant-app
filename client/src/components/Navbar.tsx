@@ -87,7 +87,9 @@ console.log("location", location);
             <Link to="/profile">Profile </Link>
             <Link to="/order/status">Order </Link>
           </div>
-          {user?.admin && (
+          { 
+           //user?.admin 
+          true && (
             <Menubar>
               <MenubarMenu>
                 <MenubarTrigger>Dashboard</MenubarTrigger>
