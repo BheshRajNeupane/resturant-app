@@ -9,6 +9,8 @@ import { auditLoggerError, auditLoggerSuccess } from "./logger/audit.logger";
 import router from "./routes/user.routes";
 import Auth0Routes from "./routes/Auth0.routes";
 import resturantRoutes from "./routes/resturant.routes";
+import ordersRooutes from "./routes/order.routes";
+
 import menuRoutes from "./routes/menu.routes";
 import { errorHandler } from "./middleware/errorHandler.middleware";
 import passport from "passport";
@@ -65,6 +67,7 @@ app.use(router)
 app.use(Auth0Routes);
 app.use(resturantRoutes)
 app.use(menuRoutes)
+app.use(ordersRooutes)
 // app.use((req, res, next) => {
 //     res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
 //     res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');

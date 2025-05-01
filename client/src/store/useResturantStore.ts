@@ -29,7 +29,7 @@ export const useResturantStore = create<RestaurantState>()(
           });
          
           if (response.data.success) {
-            console.log("reD" ,response )
+
             set({ loading: false, restaurant: response.data.data });
             toast.success(response.data.message);
           }
@@ -99,7 +99,6 @@ export const useResturantStore = create<RestaurantState>()(
       },
 
       addMenuToRestaurant: (menu: MenuItem) => {
-        console.log("addmenue store/restro" , get().restaurant)
         set((state: any) => ({
           restaurant: state.restaurant ? { ...state.restaurant, menus: [...state.restaurant.menus, menu] } : null,
    

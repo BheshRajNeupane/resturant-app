@@ -9,6 +9,10 @@ import {
 import { Input } from "./ui/input";
 import { Label } from "@radix-ui/react-label";
 import { Button } from "./ui/button";
+import { useCartStore } from "@/store/useCartStore";
+import { useOrderStore } from "@/store/useOrderStore";
+import { CheckoutSessionRequest } from "@/types/order.types";
+import { useResturantStore } from "@/store/useResturantStore";
 
 const CheckoutConfirmPage = ({
   open,
@@ -25,6 +29,9 @@ const CheckoutConfirmPage = ({
     city: " ",
     country: " ",
   });
+  const { cart } = useCartStore();
+  const { createCheckoutSession } = useOrderStore();
+  const { restaurant } = useResturantStore();
 
   const changeEventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,18 +40,38 @@ const CheckoutConfirmPage = ({
       [name]: value,
     });
   };
-  const checkoutHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const checkoutHandler =  async (e: React.FormEvent<HTMLFormElement>) => {
 e.preventDefault();
+
+try {
+  const checkoutData: CheckoutSessionRequest = {
+    cartItems: cart.map((cartItem) => ({
+      menuId: cartItem._id,
+      name: cartItem.name,
+      image: cartItem.image as string,
+      price: cartItem.price.toString(),
+      quantity: cartItem.quantity.toString(),
+    })),
+    deliveryDetails: input,
+
+    restaurantId: restaurant?._id as string,
+  };
+  await createCheckoutSession(checkoutData);
+} catch (error) {
+  console.log(error);
+}
+ 
+
+
     console.log(input);
   }
   return (
     <Dialog open={open} onOpenChange={() => setOpen(false)}>
       <DialogContent>
-        <DialogTitle>fill form to order</DialogTitle>
+        <DialogTitle>ORDER  FORM</DialogTitle>
         <DialogDescription className="text-sm">
-     Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-     Magni assumenda reiciendis ipsa harum ex laudantium accusantium 
-     iusto earum maxime modi molestias mollitia, nisi, perspiciatis minima inventore in esse libero dolor?
+          Please fill in the form below to proceed with your order. Your
+          information will be used for order processing and delivery.
         </DialogDescription>
         <form  onSubmit={checkoutHandler} className=" flex flex-col ">
           <div>

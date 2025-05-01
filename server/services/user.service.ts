@@ -71,10 +71,12 @@ class UserServices {
     let inputpassword = password;
     try {
       let existing_user = await User.findOne({ email }).select("+password");
+      
 
       if (!existing_user) {
         throw HttpException.notFound("User doesnot exists");
       }
+      console.log("existing_user", existing_user);
       if (existing_user.provider === "google") {
         throw HttpException.badRequest("Please login using Google");
       }

@@ -79,7 +79,7 @@ console.log("location", location);
     <div className="max-w-7xl mx-auto">
       <div className="flex items-center justify-between h-14">
         <Link to="/">
-          <h1 className="font-bold text-2xl md:font-extrabold">Testing</h1>{" "}
+          <h1 className="font-bold text-2xl md:font-extrabold">Restaurant</h1>{" "}
         </Link>
         <div className="hidden md:flex gap-10">
           <div className="hidden md:flex items-center gap-6">
@@ -88,8 +88,9 @@ console.log("location", location);
             <Link to="/order/status">Order </Link>
           </div>
           { 
-           //user?.admin 
-          true && (
+          //  user?.admin  
+          true
+           && (
             <Menubar>
               <MenubarMenu>
                 <MenubarTrigger>Dashboard</MenubarTrigger>
@@ -150,7 +151,7 @@ console.log("location", location);
 
           <div>
             <Avatar>
-              <AvatarImage />
+              <AvatarImage src={user?.profilePicture} />
               <AvatarFallback>BN</AvatarFallback>
             </Avatar>
           </div>
@@ -178,6 +179,13 @@ export default Navbar;
 
 //mobile navbar
 const MobileNavbar = () => {
+  const navigate = useNavigate();
+  const { cart } = useCartStore();
+  const { setTheme } = useThemeStore();
+  const { user, loading, logout } = useUserStore();
+  const location = useLocation();
+  const [lastLocation, setLastLocation] = useState(null);
+
   return (
     <Sheet>
       <SheetTrigger>
@@ -197,14 +205,14 @@ const MobileNavbar = () => {
               <span className="sr-only">Toggle theme</span>
             </Button>
           </DropdownMenuTrigger>
-          {/* <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end">
             <DropdownMenuItem onClick={() => setTheme("light")}>
               Light
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => setTheme("dark")}>
               Dark
             </DropdownMenuItem>
-          </DropdownMenuContent> */}
+          </DropdownMenuContent>
         </DropdownMenu>
 
         <Separator className="my-2" />
@@ -257,13 +265,13 @@ const MobileNavbar = () => {
         <SheetFooter className="flex flex-col gap-5">
           <div className="flex flex-row items-center gap-2">
             <Avatar>
-              <AvatarImage />
+              <AvatarImage src={user?.profilePicture } />
               <AvatarFallback>BN</AvatarFallback>
             </Avatar>
-            <h1 className="font-bold">Bhesh Raj Neupane</h1>
+            <h1 className="font-bold">{user?.fullname}</h1>
           </div>
           <SheetClose asChild>
-            <Button type="submit" className="bg-orange hover:bg-hoverOrange">
+            <Button type="" className="bg-orange hover:bg-hoverOrange" onClick={logout}>
               Logout
             </Button>
           </SheetClose>

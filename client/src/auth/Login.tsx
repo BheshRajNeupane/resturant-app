@@ -7,8 +7,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import {  userLoginSchema,LoginInputState } from "../schema/userSchema"
 import { useUserStore } from "@/store/useUserStore";
 import { useNavigate } from "react-router-dom";
-
-
+import   hotel1 from "@/assets/hotel1.jpg";
 
 const redirectToGoogleSSO = ()=>{
 
@@ -64,11 +63,11 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen w-full">
-    <div className="  w-full md:w-[70%] h-auto  ml-6 mt-10 p-4 border border-gray-300 rounded-lg shadow-md">
+    <div className="flex items-center justify-center min-h-screen w-full bg-cover bg-center "  >
+    <div className="  w-full md:w-[40%] h-auto  ml-6 mt-10 p-4 border border-gray-300 rounded-lg shadow-md">
       <form action="" onSubmit={loginSubmitHandler} className="flex flex-col gap-3 ">
         <div className="mb-4">
-          <h1 className="font-bold text-2xl">Testing</h1>
+          <h1 className="font-bold text-2xl">Login</h1>
         </div>
         <div className="mb-4">
           <div className="relative">
@@ -118,6 +117,8 @@ const Login = () => {
               Login{" "}
             </Button>
           )}
+
+
           <div className="mt-4">
             <Link
               to="/forget-password"
@@ -127,26 +128,29 @@ const Login = () => {
             </Link>
           </div>
         </div>
+     
         <Separator />
-        <p className="mt-2">
+        <div className="mb-10 mt-3">
+            
+            <Button
+            onClick={redirectToGoogleSSO}
+           
+              className=" w-full bg-blue-600 hover:bg-blue-400"
+            >
+              {" "}
+          
+              Login with Google{" "}
+            </Button>
+          
+        </div>
+        <p className="">
           Don't have an account?
           <Link to="/signup" className="text-blue-500">
             Signup
           </Link>
         </p>
       </form>
-      <div className="mb-10 mt-3">
-            
-                  <Button
-                  onClick={redirectToGoogleSSO}
-                 
-                    className=" w-full bg-blue-600 hover:bg-blue-400"
-                  >
-                    {" "}
-                    Login with Google{" "}
-                  </Button>
-                
-              </div>
+     
     </div>
 
     </div>

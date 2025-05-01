@@ -18,4 +18,5 @@ export class DotenvConfig {
   static CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY
   static CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET
   static CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME
+  static STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 }

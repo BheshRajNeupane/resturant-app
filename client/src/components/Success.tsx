@@ -3,8 +3,16 @@ import { Separator } from "./ui/separator";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import HeroPizza from "../assets/hero_pizza.png";
+
+import { useOrderStore } from "@/store/useOrderStore";
+import { useEffect } from "react";
 const Success = () => {
-  const orders = [1];
+
+   const { orders, getOrderDetails } = useOrderStore();
+
+   useEffect(() => {
+     getOrderDetails();
+   }, []);
 
   if (orders.length === 0)
     return (
@@ -28,29 +36,35 @@ const Success = () => {
           <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">
             Order Summary
           </h2>
-          {/* Your Ordered Item Display here  */}
-
-          <div className="mb-4">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center">
-                <img
-                  src={HeroPizza}
-                  alt=""
-                  className="w-14 h-14 rounded-md object-cover"
-                />
-                <h3 className="ml-4 text-gray-800 dark:text-gray-200 font-medium">
-                  Pizza
-                </h3>
-              </div>
-              <div className="text-right">
-                <div className="text-gray-800 dark:text-gray-200 flex items-center">
-                  <IndianRupee />
-                  <span className="text-lg font-medium">100</span>
+          {/*  Ordered Item Display here  */}
+          {orders.map((order:any, index:number) => (
+            <div key={index}>
+              {order.cartItems.map((item:CartItem) => (
+                <div className="mb-4">
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <img
+                        src={item.image}
+                        alt=""
+                        className="w-14 h-14 rounded-md object-cover"
+                      />
+                      <h3 className="ml-4 text-gray-800 dark:text-gray-200 font-medium">
+                        {item.name}
+                      </h3>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-gray-800 dark:text-gray-200 flex items-center">
+                        <IndianRupee />
+                        <span className="text-lg font-medium">{item.price}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <Separator className="my-4" />
                 </div>
-              </div>
+              ))}
             </div>
-            <Separator className="my-4" />
-          </div>
+          ))}
+         
         </div>
         <Link to="/cart">
           <Button className="bg-orange hover:bg-hoverOrange w-full py-3 rounded-md shadow-lg">

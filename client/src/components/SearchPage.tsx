@@ -1,4 +1,4 @@
-import HeroImage from "@/assets/hero_pizza.png";
+
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Globe, MapPin, X } from "lucide-react";
 import { useEffect, useState } from "react";

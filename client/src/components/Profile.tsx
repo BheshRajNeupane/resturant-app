@@ -94,7 +94,7 @@ const Profile = () => {
         <div className="flex items-center gap-2">
           <Avatar className="relative md:w-28 md:h-28 w-20 h-20">
             <AvatarImage src={selectedProfilePicture} />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>BN</AvatarFallback>
             <input
               ref={imageRef}
               className="hidden"

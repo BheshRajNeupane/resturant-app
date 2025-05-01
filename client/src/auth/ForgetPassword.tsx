@@ -21,8 +21,8 @@ const handleSubmit = async (e: FormEvent) => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen     "  onSubmit={handleSubmit}>
-      <form className=" flex flex-col gap-5  rounded-lg md:p-8 w-full md:w-[70%] h-auto">
+    <div className="  flex items-center justify-center min-h-screen     "  onSubmit={handleSubmit}>
+      <form className=" w-full md:w-[40%] flex flex-col gap-5  rounded-lg md:p-8 h-auto">
         <div className="text-center">
           <h1 className="font-extrabold text-2xl mb-2">Forgot Password</h1>
           <p className="text-sm text-gray-600">

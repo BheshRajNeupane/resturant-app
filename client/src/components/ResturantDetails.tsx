@@ -24,8 +24,8 @@ const RestaurantDetail = () => {
      <div className=" flex flex-col items-center ">
         <div className="w-full h-32 md:h-6  lg:h-72">
           <img
-            // src={singleRestaurant?.imageUrl}
-            src={HeroPizza}
+            src={singleRestaurant?.imageUrl}
+            
             alt="restaurant"
             className=" object-cover w-full rounded-lg h-full shadow-lg"
           />

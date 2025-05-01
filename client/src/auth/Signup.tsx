@@ -73,7 +73,7 @@ const navigate = useNavigate()
   return (
     <div className="flex items-center justify-center min-h-screen w-full">
 
-    <div className="w-full md:w-[70%] h-auto  ml-6 mt-10 p-4 border border-gray-300 rounded-lg shadow-md">
+    <div className="w-full md:w-[40%] h-auto  ml-6 mt-10 p-4 border border-gray-300 rounded-lg shadow-md">
       <form action="" onSubmit={loginSubmitHandler}>
         <div className="mb-4">
           <h1 className="font-bold text-2xl">Testing</h1>
@@ -144,7 +144,7 @@ const navigate = useNavigate()
           </div>
         </div>
 
-        <div className="mb-10">
+        <div className="mb-3">
           {loading ? (
             <Button disabled className="w-full bg-orange hover:bg-hoverOrange">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
@@ -158,7 +158,22 @@ const navigate = useNavigate()
               Signup{" "}
             </Button>
           )}
+         
+
         </div>
+        <div className="">
+      
+      <Button
+      onClick={redirectToGoogleSSO}
+     
+        className=" w-full bg-blue-600 hover:bg-blue-400"
+      >
+        {" "}
+        Signup with Google{" "}
+      </Button>
+    
+  </div>
+
         
         
         <p className="mt-1 mb-4">
@@ -170,19 +185,7 @@ const navigate = useNavigate()
        
       </form>
      
-      <div className="mb-10">
-      
-            <Button
-            onClick={redirectToGoogleSSO}
-           
-              className=" w-full bg-blue-600 hover:bg-blue-400"
-            >
-              {" "}
-              Signup with Google{" "}
-            </Button>
-          
-        </div>
-
+     
         
     </div>
     </div>

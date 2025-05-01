@@ -45,7 +45,7 @@ const Cart = () => {
             <TableRow>
               <TableCell>
                 <Avatar>
-                  <AvatarImage src={item.image} alt="" />
+                  <AvatarImage src={item?.image} alt="" />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
               </TableCell>
