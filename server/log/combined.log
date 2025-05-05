@@ -1892,3 +1892,72 @@
 {"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"email":"aashishneupane566@gmail.com"},"errorMessage":"Please login using Google","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-04-30T15:55:40.294Z"}
 {"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"email":"aashishneupane566@gmail.com"},"errorMessage":"Please login using Google","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-04-30T15:55:53.203Z"}
 {"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"email":"aashishneupane566@gmail.com"},"errorMessage":"Please login using Google","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-04-30T15:55:53.933Z"}
+{"level":"info","message":"/api","metadata":{"action":"VIEW","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T10:42:42.233Z"}
+{"level":"info","message":"/api","metadata":{"action":"VIEW","body":{"email":"aashishneupane566@gmail.com"},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T10:43:09.043Z"}
+{"level":"info","message":"/api","metadata":{"action":"VIEW","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T11:18:28.573Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{"email":"aashish@gmail.com"},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T11:47:44.217Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:02:25.879Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:02:25.881Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:02:30.213Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:03:25.219Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:03:29.218Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:03:33.214Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:03:45.216Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:03:45.219Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:03:53.214Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:04:54.215Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:04:54.219Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:05:02.212Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:05:03.582Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:05:05.703Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:05:05.706Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:05:06.349Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:05:06.351Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:06:38.384Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:06:38.386Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:14:57.218Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:15:20.213Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:15:24.635Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:15:24.638Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:15:33.843Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:15:33.845Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:15:47.525Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:15:49.935Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:15:49.938Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:18:25.220Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:19:47.329Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:19:53.957Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:20:04.206Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:20:36.211Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:20:41.212Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:25:24.120Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:25:24.122Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:27:05.975Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:29:09.212Z"}
+{"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"captcha":"we23","captha":" ","email":"aashishneupane566@gmail.com"},"errorMessage":"Property captcha should not exist","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-05-05T15:29:23.801Z"}
+{"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"captcha":"we23","captha":" ","email":"aashishneupane566@gmail.com"},"errorMessage":"Property captcha should not exist","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-05-05T15:29:29.461Z"}
+{"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"captcha":"we23","captha":" ","email":"aashishneupane566@gmail.com"},"errorMessage":"Property captcha should not exist","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-05-05T15:30:32.125Z"}
+{"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"captcha":"we23","captha":" ","email":"aashishneupane566@gmail.com"},"errorMessage":"Property captha should not exist","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-05-05T15:31:08.946Z"}
+{"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"captcha":"we23","captha":" ","email":"aashishneupane566@gmail.com"},"errorMessage":"Property captha should not exist","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-05-05T15:31:11.457Z"}
+{"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"captcha":"sdwe23","captha":" ","email":"aashishneupane566@gmail.com"},"errorMessage":"Property captha should not exist","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-05-05T15:31:16.760Z"}
+{"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"captcha":"sdwe23","captha":" ","email":"aashishneupane566@gmail.com"},"errorMessage":"Property captha should not exist","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-05-05T15:32:01.441Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:32:48.308Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:32:48.314Z"}
+{"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"captcha":"csdfe","email":"aashishneupane566@gmail.com"},"errorMessage":"Captcha is not valid","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-05-05T15:32:55.745Z"}
+{"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"captcha":"cmee","email":"aashishneupane566@gmail.com"},"errorMessage":"Captcha is not valid","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-05-05T15:33:11.295Z"}
+{"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"captcha":"CMeE","email":"aashishneupane566@gmail.com"},"errorMessage":"Captcha is not valid","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-05-05T15:33:18.079Z"}
+{"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"captcha":"CMeE","email":"aashishneupane566@gmail.com"},"errorMessage":"Captcha is not valid","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-05-05T15:33:19.954Z"}
+{"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"captcha":"CMeE","email":"aashishneupane566@gmail.com"},"errorMessage":"Captcha is not valid","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-05-05T15:33:20.820Z"}
+{"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"captcha":"CMeE","email":"aashishneupane566@gmail.com"},"errorMessage":"Captcha is not valid","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-05-05T15:34:17.555Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:34:26.683Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:34:26.702Z"}
+{"level":"info","message":"/login","metadata":{"action":"CREATE","body":{"captcha":"4GtL","email":"aashishneupane566@gmail.com"},"errorMessage":"Captcha is not valid","params":{},"query":{},"status":"FAILED","user":"n/a"},"timestamp":"2025-05-05T15:34:59.163Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:38:16.668Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:38:16.670Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{"email":"aashish@gmail.com"},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:48:35.304Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{"email":"aashish@gmail.com"},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:52:10.216Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:53:55.289Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:53:55.298Z"}
+{"level":"info","message":"/login/google","metadata":{"action":"VIEW","body":{},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:54:02.162Z"}
+{"level":"info","message":"/auth/google/callback","metadata":{"action":"VIEW","body":{},"params":{},"query":{"authuser":"0","code":"4/0Ab_5qlk3XseEXLMTxarxshTIt6rmVEf69nvPX_WYRNNgFkN9sKMlMPfm9P78Z9dgoAn0-A","prompt":"none","scope":"email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid"},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:54:06.313Z"}
+{"level":"info","message":"/captcha","metadata":{"action":"CREATE","body":{"email":"aashish@gmail.com"},"params":{},"query":{},"status":"SUCCESS","user":"n/a"},"timestamp":"2025-05-05T15:55:23.527Z"}

@@ -3,11 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@radix-ui/react-separator";
 import { Mail, LockKeyhole, Loader2 } from "lucide-react";
 import { Link, Navigate } from "react-router-dom";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import {  userLoginSchema,LoginInputState } from "../schema/userSchema"
 import { useUserStore } from "@/store/useUserStore";
 import { useNavigate } from "react-router-dom";
 import   hotel1 from "@/assets/hotel1.jpg";
+import { get } from "http";
+import { set } from "zod";
+
 
 const redirectToGoogleSSO = ()=>{
 
@@ -28,11 +31,14 @@ const Login = () => {
   const [input, setInput] = useState<LoginInputState>({
     email: "",
     password: "",
+    captcha: "",
   });
 
   
   const [errors, setErrors] = useState<Partial<LoginInputState>>({});
- const { login  , loading} = useUserStore();
+  const [captchaImg, setCaptchaImg] = useState<string>("");
+
+ const { login  , loading , getCaptcha} = useUserStore();
   const navigate = useNavigate()
 
   const changeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -61,6 +67,15 @@ const Login = () => {
   }
   
   };
+ 
+  useEffect(() => {
+    async  function fetchCaptcha() {
+      const captcha = await getCaptcha();
+      setCaptchaImg(captcha);
+     }
+     fetchCaptcha()
+  }, []);
+
 
   return (
     <div className="flex items-center justify-center min-h-screen w-full bg-cover bg-center "  >
@@ -99,6 +114,23 @@ const Login = () => {
             <LockKeyhole className="absolute inset-y-2 left-2 text-gray-500   pointer-events-none" />
             {errors && (
               <span className="text-xs text-red-500">{errors.password} </span>
+            )}
+          </div>
+        </div>
+        <div className="mb-4">
+        <div dangerouslySetInnerHTML={{ __html: captchaImg }} className="bg-blue-100" />
+
+          <div className="relative">
+            <Input
+              type="text"
+              placeholder="Enter  captcha"
+              name="captcha"
+              value={input.captcha}
+              onChange={changeEventHandler}
+              className="pl-10 mt-2"
+            />
+            {errors && (
+              <span className="text-xs text-red-500">{errors.captcha} </span>
             )}
           </div>
         </div>

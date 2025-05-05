@@ -1,7 +1,7 @@
 import { type Request , type Response } from 'express';
 import UserServices from '../services/user.service';
 import { StatusCodes } from '../constant/statusCodes';
-
+import svgCaptcha from 'svg-captcha';
 
 class UserController {
 
@@ -14,9 +14,20 @@ class UserController {
       data: response,
     });
 }
-  async Login(req: Request, res: Response) {
 
-    const response = await UserServices.Login(req.body)
+ sendCaptcha(req: Request, res: Response) {
+  var captcha = svgCaptcha.create();
+    req.captcha = captcha.text; 
+    console.log("captcha1", captcha.text);
+    res.type('svg');
+    res.status(200).send(captcha.data);
+
+
+ }
+  async Login(req: Request, res: Response) {
+const  captcha = req.captcha as string;
+    console.log("captcha2", captcha);
+    const response = await UserServices.Login(req.body , captcha)
     console.log(response.access_token);
      res.cookie("token", response.access_token, {
       // httpOnly: true,

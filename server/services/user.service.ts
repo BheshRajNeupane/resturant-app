@@ -21,6 +21,7 @@ interface ISignup {
 interface ILogin {
   email: string;
   password: string;
+  captcha: string;
 }
 
 class UserServices {
@@ -66,9 +67,19 @@ class UserServices {
     }
   }
 
-  async Login({ email, password }: ILogin) {
+//  sendCaptcha(){
+
+//  }
+
+  async Login({ email, password  , captcha}: ILogin , captchaInReq: string) {
      
     let inputpassword = password;
+    if(captcha && captcha !== captchaInReq){
+      throw HttpException.badRequest("Captcha is not valid");
+    }
+
+
+
     try {
       let existing_user = await User.findOne({ email }).select("+password");
       

@@ -17,7 +17,8 @@ import passport from "passport";
 require("./OAuth/passportGoogleSSO");
 import session from "express-session";
 // import MongoStore from "connect-mongo";
-
+import toobusy from "toobusy-js";
+import helmet from "helmet";
 
 
 const app = express();
@@ -30,7 +31,33 @@ const PORT = DotenvConfig.PORT || 3000;
 
 const DIRNAME = path.resolve();
 
+
+// middleware which blocks requests when we're too busy
+app.use(function(req, res, next) {
+  if (toobusy()) {
+    res.status(503).send("I'm busy right now, sorry.");
+  } else {
+    next();
+  }
+});
+
+
+app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],  
+      scriptSrc: ["'self'"],  
+      frameAncestors: ["'none'"], 
+      styleSrc: ["'none'"]
+    }
+  })
+);
+
+
 app.use(bodyParser.json())
+
+
 
 app.use(auditLoggerSuccess);
 
@@ -75,12 +102,22 @@ app.use(ordersRooutes)
 //   });
 app.use(auditLoggerError)
 
+
+
+
 //Global error
 app.use(errorHandler)
 
-app.listen(PORT, () => {
+ const server = app.listen(PORT, () => {
     connectDB();
     console.log(`Server listen at port ${PORT}`);
+});
+
+process.on('SIGINT', function() {
+  server.close(() => {
+    toobusy.shutdown();
+    process.exit(0); // exit with success
+  });
 });
 
 

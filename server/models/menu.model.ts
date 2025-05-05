@@ -6,6 +6,7 @@ export interface IMenu {
     description:string;
     price:number;
     image:string;
+    rating:number;
 }
 export interface IMenuDocument extends IMenu, Document {
     createdAt:Date;
@@ -29,6 +30,10 @@ const menuSchema = new mongoose.Schema<IMenuDocument>({
     type:String,
     required:true
   },
+  // rating:{
+  //   type:Number,
+  //   default:0
+  // }
 },{timestamps:true});
 
 

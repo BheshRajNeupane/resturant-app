@@ -12,6 +12,7 @@ export type SignupInputState = z.infer<typeof userSignupSchema>;
 export const userLoginSchema = z.object({
   email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 6 character"),
+  captcha: z.string().min(1, "Captcha is required"),
 });
 
 export type LoginInputState = z.infer<typeof userLoginSchema>;

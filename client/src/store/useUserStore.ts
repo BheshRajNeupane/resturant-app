@@ -26,6 +26,7 @@ type UserState = {
   loading: boolean;
   oauth2VerifyEmail:boolean;
   googleAuth:(token:string )=>void;
+  getCaptcha:()=>  Promise<string>;
   signup: (input: SignupInputState) => Promise<void>;
   login: (input: LoginInputState) => Promise<void>;
   verifyEmail: (verificationCode: string) => Promise<void>;
@@ -48,7 +49,7 @@ export const useUserStore = create<UserState>()(
       googleAuth:( token : string ) => {
   // try{
       
- console.log("tttkon" , token)
+ 
         set({ isCheckingAuth: true  , token: token , oauth2VerifyEmail:true , isAuthenticated:true });
       // }catch(err:any){
       //   toast.error(err.message)
@@ -103,7 +104,17 @@ export const useUserStore = create<UserState>()(
           throw err;
         }
       },
+      getCaptcha: async ()=>{
+        try{
+          const res = await AxiosInstance.post('/captcha');
+          console.log(res.data);
+          return res.data
 
+        }catch(err:any){
+        }
+        
+
+      },
       verifyEmail: async (verificationCode) => {
         try {
           set({ loading: true });

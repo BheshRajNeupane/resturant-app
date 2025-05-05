@@ -45,13 +45,19 @@ export class LoginDTO {
   @IsEmail({}, { message: 'Email must be a valid email address.' })
   email: string;
 
+  @IsNotEmpty({ message: 'Password is required.' })
+  password: string;
+
+  @IsNotEmpty({ message: 'Captcha is required.' })
+  @IsString({ message: 'Captcha must be a string.' })
+  captcha: string;
+
 
   // @IsNotEmpty({ message: 'Password is required.' })
   // @Matches(passwordRegex, { message: 'Password must be at least 6 characters long and contain at least 1 uppercase letter, 1 lowercase letter, and 1 number.' })
   // password: string;
 
-  @IsNotEmpty({ message: 'Password is required.' })
-  password: string;
+  
 
   
 }
