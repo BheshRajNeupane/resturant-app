@@ -7,7 +7,7 @@ export type MenuItem = {
         name: string;
         description: string;
         price: number;
-        image?: File | string | undefined;
+        image?: string | undefined;
 }
 
 

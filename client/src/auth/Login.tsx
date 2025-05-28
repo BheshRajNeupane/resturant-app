@@ -2,14 +2,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@radix-ui/react-separator";
 import { Mail, LockKeyhole, Loader2 } from "lucide-react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import {  userLoginSchema,LoginInputState } from "../schema/userSchema"
 import { useUserStore } from "@/store/useUserStore";
 import { useNavigate } from "react-router-dom";
-import   hotel1 from "@/assets/hotel1.jpg";
-import { get } from "http";
-import { set } from "zod";
+// import   hotel1 from "@/assets/hotel1.jpg";
+// import { get } from "http";
+// import { set } from "zod";
 
 
 const redirectToGoogleSSO = ()=>{

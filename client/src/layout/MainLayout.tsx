@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 // import { useEffect } from "react";
-import { Outlet, useSearchParams } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
   // const [searchParams] = useSearchParams();

@@ -9,8 +9,8 @@ import { Navigate } from "react-router-dom";
       return <Navigate to="/login" replace />;
     }
   
-  
-const isUserEmailVerified = user?.isVerified || user?.user?.isVerified || oauth2VerifyEmail;
+    // user?.user?.isVerified 
+const isUserEmailVerified = user?.isVerified || oauth2VerifyEmail;
 
     if (!isUserEmailVerified) {
       return <Navigate to="/verify-email" replace />;

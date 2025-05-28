@@ -1,5 +1,5 @@
 import { Badge } from "./ui/badge";
-import HeroPizza from "@/assets/hero_pizza.png";
+// import HeroPizza from "@/assets/hero_pizza.png";
 import AvailableMenu from "./AvailableMenu";
 import { useParams } from "react-router-dom";
 import { useResturantStore } from "@/store/useResturantStore";

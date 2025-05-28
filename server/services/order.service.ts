@@ -5,10 +5,10 @@ import { Message } from "../constant/messages"
 import { Order } from "../models/order.model"
 import { Menu } from "../models/menu.model"
 import uploadImageOnCloudinary from "../cloudinary/imageUpload"
-import  Stripe  from "stripe"
+import Stripe from "stripe"
 import { DotenvConfig } from "../config/env.config"
 import { http } from "winston"
- 
+
 const stripe = new Stripe(DotenvConfig.STRIPE_SECRET_KEY!);
 
 
@@ -21,9 +21,9 @@ export interface MenuItem {
     image?: File | string | undefined;
 }
 
- export interface RestaurantMenu extends MenuItem{
-     _id: mongoose.Types.ObjectId
- }
+export interface RestaurantMenu extends MenuItem {
+    _id: mongoose.Types.ObjectId
+}
 
 type CheckoutSessionRequest = {
     cartItems: {
@@ -43,9 +43,9 @@ type CheckoutSessionRequest = {
 }
 
 
-class OrderService{
+class OrderService {
 
-    async getOrderDetails(userId:string){
+    async getOrderDetails(userId: string) {
         try {
             const orders = await Order.find({ user: userId }).populate('user').populate('restaurant');
             return orders;
@@ -53,14 +53,14 @@ class OrderService{
             console.log(error);
             throw HttpException.internalServerError("Error while fetching orders");
         }
-    
+
     }
-                                                                                //RestaurantMenu
-    private   createLineItems(checkoutSessionRequest:CheckoutSessionRequest  , menuItems:any ){
+    //RestaurantMenu
+    private createLineItems(checkoutSessionRequest: CheckoutSessionRequest, menuItems: any) {
         const lineItems = checkoutSessionRequest.cartItems.map((cartItem) => {
             const menuItem = menuItems.find((item: any) => item._id.toString() === cartItem.menuId);
             if (!menuItem) throw new Error(`Menu item id not found`);
-    
+
             return {
                 price_data: {
                     currency: 'NPR',
@@ -73,18 +73,17 @@ class OrderService{
                 quantity: cartItem.quantity,
             }
         })
-      
+
         return lineItems;
-  
+
 
     }
-    async createCheckoutSession( checkoutSessionRequest:CheckoutSessionRequest ,  user:string )
-    {
+    async createCheckoutSession(checkoutSessionRequest: CheckoutSessionRequest, user: string) {
         try {
             console.log("checkoutSessionRequest", checkoutSessionRequest.restaurantId);
             const restaurant = await Restaurant.findById(checkoutSessionRequest.restaurantId).populate('menus');
             if (!restaurant) {
-               throw HttpException.notFound('Restaurant not found')
+                throw HttpException.notFound('Restaurant not found')
             };
             const order: any = new Order({
                 restaurant: restaurant._id,
@@ -93,16 +92,16 @@ class OrderService{
                 cartItems: checkoutSessionRequest.cartItems,
                 status: "pending"
             });
-    
+
             // line items
             const menuItems = restaurant.menus;
-            const lineItems =   this.createLineItems(checkoutSessionRequest, menuItems as any);
+            const lineItems = this.createLineItems(checkoutSessionRequest, menuItems as any);
 
 
             const session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
                 shipping_address_collection: {
-                    allowed_countries: ['GB', 'US', 'CA' ]
+                    allowed_countries: ['GB', 'US', 'CA']
                 },
                 line_items: lineItems,
                 mode: 'payment',
@@ -118,18 +117,20 @@ class OrderService{
             console.log("session>>>>", session);
             if (!session.url) {
                 throw HttpException.badRequest("Error while creating session");
-               
+
             }
             await order.save();
             return session
         } catch (error) {
             console.log(error);
             throw HttpException.internalServerError("Error while creating session");
-    
-        }
- }
 
+        }
+    }
+    async stripeWebhook(signature as String, body) {
+
+    }
 
 
 }
-export default new  OrderService() 
+export default new OrderService() 

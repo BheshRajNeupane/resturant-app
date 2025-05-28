@@ -91,7 +91,7 @@ class ResturantService {
       );
 
       if (!restaurant) {
-        throw HttpException.notFound("resutrant not f");
+        throw HttpException.notFound("resutrant not found");
       }
       return restaurant;
     } catch (error) {

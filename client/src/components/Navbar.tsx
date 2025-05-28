@@ -55,7 +55,7 @@ const Navbar = () => {
   const { setTheme } = useThemeStore();
   const { user, loading, logout } = useUserStore();
   const location = useLocation();
-  const [lastLocation, setLastLocation] = useState(null);
+  const [lastLocation, setLastLocation] = useState<string | null>(null);
 
 console.log("location", location);  
   
@@ -271,7 +271,7 @@ const MobileNavbar = () => {
             <h1 className="font-bold">{user?.fullname}</h1>
           </div>
           <SheetClose asChild>
-            <Button type="" className="bg-orange hover:bg-hoverOrange" onClick={logout}>
+            <Button className="bg-orange hover:bg-hoverOrange" onClick={logout}>
               Logout
             </Button>
           </SheetClose>

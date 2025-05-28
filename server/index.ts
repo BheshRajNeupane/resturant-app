@@ -85,8 +85,13 @@ app.use(passport.session());
 
 
 app.get("/api", (req, res) => {
-console.log(req.user)
-    res.send("Welcome to the server");
+// console.log( "reqest>>>>>>>>>>>>" ,req)
+    res.send("Welcome to the server get");
+});
+
+app.post("/api", (req, res) => {
+// console.log( "reqest>>>>>>>>>>>>" ,req)
+    res.send("Welcome to the server post ");
 });
 
 

@@ -138,7 +138,7 @@ const {  editMenu} =useMenuStore()
                     setInput({ ...input, image: e.target.files?.[0] || undefined })
                   }
                 />
-                {error && <span className="text-xs font-medium text-red-600">{error.image}</span>}
+                {error && <span className="text-xs font-medium text-red-600">{String(error?.image)}</span>}
               </div>
               <DialogFooter className="mt-5">
                 {loading ? (

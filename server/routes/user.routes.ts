@@ -18,6 +18,7 @@ router.post(
     '/captcha',
     userController.sendCaptcha
   );
+
 router.post(
     '/signup',
     RequestValidator.validate(SignupDTO),

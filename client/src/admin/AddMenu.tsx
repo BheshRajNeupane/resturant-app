@@ -13,17 +13,11 @@ import { Label } from "@/components/ui/label";
 import { MenuFormSchema,menuSchema } from "@/schema/menuSchema";
 import { Loader2, Plus } from "lucide-react";
 import React, { FormEvent, useState } from "react";
-import  HeroPizza  from "@/assets/hero_pizza.png";
 import EditMenu from "./EditMenu";
 import { useResturantStore } from "@/store/useResturantStore"
 import { useMenuStore } from "@/store/useMenuStore"
 
-const menu = {
-  name: "Biryani",
-  description: "A delicious plate of biryani",
-  price: 80,
-  image: HeroPizza,
-}
+
 
 const AddMenu = () => {
   const [input, setInput] = useState<MenuFormSchema>({
@@ -34,7 +28,7 @@ const AddMenu = () => {
   });
   const { createMenu} = useMenuStore()
 
-   const {loading ,  restaurant, addMenuToRestaurant} = useResturantStore()
+   const {loading ,  restaurant} = useResturantStore()
   const [open, setOpen] = useState<boolean>(false); // for add menu dialog
   const [editOpen, setEditOpen] = useState<boolean>(false); // for edit menu dialog
   const [selectedMenu, setSelectedMenu] = useState<any>();

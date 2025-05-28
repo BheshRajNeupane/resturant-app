@@ -26,6 +26,15 @@ class OrderController{
        });
        
    }
+   async WebHook(req:Request , res:Response){
+     const response = await orderService.stripeWebhook(req.headers['signature'] , req.body);
+       res.status(200).json({
+         success: true,
+         message: ' Successfully.',
+         data: response,
+       });
+
+   }
  
    
   

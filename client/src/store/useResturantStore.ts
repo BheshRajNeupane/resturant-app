@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { toast } from 'sonner';
 import AxiosInstance from '@/api/axios';
-import encryptDecrypt from '@/utils/encryptDecrypt';
+// import encryptDecrypt from '@/utils/encryptDecrypt';
 import { RestaurantState, MenuItem } from '@/types/resturant.types';
 import { Orders } from '@/types/order.types';
 

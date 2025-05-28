@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+// import { Separator } from "@/components/ui/separator";
 import { Mail, LockKeyhole, Loader2, User, PhoneOutgoing } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { ChangeEvent, FormEvent, useState } from "react";
@@ -31,7 +31,7 @@ const Signup = () => {
   });
 
   const [errors, setErrors] = useState<Partial<SignupInputState>>({});
-const { signup , loading  , googleAuth} = useUserStore()
+const { signup , loading  } = useUserStore()
 const navigate = useNavigate()
 
   const changeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {

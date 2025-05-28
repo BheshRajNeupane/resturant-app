@@ -2,10 +2,11 @@ import { IndianRupee } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-import HeroPizza from "../assets/hero_pizza.png";
+// import HeroPizza from "../assets/hero_pizza.png";
 
 import { useOrderStore } from "@/store/useOrderStore";
 import { useEffect } from "react";
+import { CartItem } from "@/types/cart.types";
 const Success = () => {
 
    const { orders, getOrderDetails } = useOrderStore();
